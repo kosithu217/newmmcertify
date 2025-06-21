@@ -20,8 +20,7 @@
     <!-- Custom CSS -->
     <style>
         :root {
-            --primary-color: #4e73df;
-            --secondary-color: #2e59d9;
+          
             --accent-color: #2c3e50;
             --light-bg: #f8f9fc;
             --border-color: #e3e6f0;
@@ -52,24 +51,27 @@
         .certificate-header {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 1.5rem 2rem;
+            padding: 2rem;
             display: flex;
+            flex-direction: column;
             align-items: center;
+            text-align: center;
             border-bottom: 5px solid var(--accent-color);
         }
         
         .certificate-logo {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             object-fit: contain;
             background: white;
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+            padding: 12px;
+            border-radius: 12px;
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+            margin-bottom: 1rem;
         }
         
         .certificate-title {
-            margin-left: 1.5rem;
+            margin: 0;
         }
         
         .certificate-title h1 {

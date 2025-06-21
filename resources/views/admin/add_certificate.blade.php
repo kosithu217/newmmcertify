@@ -258,7 +258,7 @@
                                                                 <i class="fas fa-file-image fa-2x mb-2"></i>
                                                                 <h6 id="image_two-label">Click to upload back side</h6>
                                                                 <p class="text-muted small mb-0">PNG format (Max 2MB)</p>
-                                                                <input type="file" name="image_two" id="image_two" class="d-none" required 
+                                                                <input type="file" name="image_two" id="image_two" class="d-none"  
                                                                     accept="image/png" onchange="previewCertificateImage(this, 'back')">
                                                             </div>
                                                         </div>

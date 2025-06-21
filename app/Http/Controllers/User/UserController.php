@@ -45,12 +45,12 @@ class UserController extends Controller
     // Validate form input
     $validated = $request->validate([
         'name' => 'required|string',
-        'image' => 'required|image|mimes:png|max:2048', // First certificate image
-        'image_two' => 'required|image|mimes:png|max:2048', // Second certificate image
+        'image' => 'required|image|mimes:png|max:2048', // Front side of certificate (required)
+        'image_two' => 'nullable|image|mimes:png|max:2048', // Back side of certificate (optional)
         'description' => 'required|string',
         'course_outline' => 'required|string',
-        // 'attachments' => 'required|array', // Ensure attachments is an array
-        // 'attachments.*' => 'file|mimes:pdf,doc,docx,jpg,png|max:2048', // Validate each file in the array
+        'attachments' => 'nullable|array',
+        'attachments.*' => 'file|mimes:pdf,doc,docx,jpg,png|max:2048',
     ]);
 
     // Handle Logo Upload
@@ -78,11 +78,14 @@ class UserController extends Controller
     $cert->move($destinationPath, $certFileName);
     $certificatePath = 'storage/certificates/images/' . $certFileName;
     
-    // Store Second Certificate Image
-    $certTwo = $request->file('image_two');
-    $certTwoFileName = uniqid() . '_2.' . $certTwo->getClientOriginalName();
-    $certTwo->move($destinationPath, $certTwoFileName);
-    $certificateTwoPath = 'storage/certificates/images/' . $certTwoFileName;
+    // Store Second Certificate Image (if provided)
+    $certificateTwoPath = null;
+    if ($request->hasFile('image_two')) {
+        $certTwo = $request->file('image_two');
+        $certTwoFileName = uniqid() . '_2.' . $certTwo->getClientOriginalName();
+        $certTwo->move($destinationPath, $certTwoFileName);
+        $certificateTwoPath = 'storage/certificates/images/' . $certTwoFileName;
+    }
 
     // Handle Attachments
     $uploadedFiles = [];
