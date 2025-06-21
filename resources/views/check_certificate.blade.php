@@ -64,7 +64,7 @@
             height: 100px;
             object-fit: contain;
             background: white;
-            padding: 12px;
+            /* padding: 12px; */
             border-radius: 12px;
             margin-bottom: 1rem;
         }
@@ -318,7 +318,7 @@
             <div class="certificate-header">
                 <img src="{{ asset($certificate->logo) }}" alt="{{ $certificate->name }} Logo" class="certificate-logo">
                 <div class="certificate-title">
-                    <h1 style="color: black;">{{ $certificate->name }}</h1>
+                    <h4 style="color: black;">{{ $certificate->name }}</h4>
                 </div>
             </div>
             
