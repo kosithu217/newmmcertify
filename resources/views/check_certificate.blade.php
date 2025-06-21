@@ -66,7 +66,6 @@
             background: white;
             padding: 12px;
             border-radius: 12px;
-            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
             margin-bottom: 1rem;
         }
         
@@ -319,7 +318,7 @@
             <div class="certificate-header">
                 <img src="{{ asset($certificate->logo) }}" alt="{{ $certificate->name }} Logo" class="certificate-logo">
                 <div class="certificate-title">
-                    <h1>{{ $certificate->name }}</h1>
+                    <h1 style="color: black;">{{ $certificate->name }}</h1>
                 </div>
             </div>
             
