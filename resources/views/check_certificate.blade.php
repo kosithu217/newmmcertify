@@ -359,18 +359,38 @@
                 @endif
 
                 <!-- Attachments -->
-                @if($certificate->attachments)
+                @php
+                    $attachments = [];
+                    if ($certificate->attachments) {
+                        try {
+                            // Try to unserialize first (common case)
+                            $unserialized = @unserialize($certificate->attachments);
+                            if ($unserialized !== false) {
+                                $attachments = is_array($unserialized) ? $unserialized : [];
+                            } else {
+                                // If not serialized, check if it's already an array
+                                $attachments = is_array($certificate->attachments) ? $certificate->attachments : [];
+                            }
+                        } catch (\Exception $e) {
+                            $attachments = [];
+                        }
+                    }
+                @endphp
+                
+                @if(!empty($attachments))
                     <h3 class="section-title">
                         <i class="fas fa-paperclip me-2"></i>Supporting Documents
                     </h3>
-                    <div class="attachments-section">
-                        @foreach (unserialize($certificate->attachments) as $key => $attach)
-                            <a href="{{ asset($attach) }}" target="_blank" class="text-decoration-none">
-                                <span class="attachment-badge">
-                                    <i class="fas fa-file-alt"></i>
-                                    Transcript {{ $key+1 }}
-                                </span>
-                            </a>
+                    <div class="attachments-section d-flex flex-wrap gap-2">
+                        @foreach ($attachments as $key => $attach)
+                            @if(!empty($attach))
+                                <a href="{{ asset($attach) }}" target="_blank" class="text-decoration-none">
+                                    <span class="attachment-badge d-inline-flex align-items-center px-3 py-2 bg-light rounded-pill" style="color: #000000;">
+                                        <i class="fas fa-eye me-2"></i>
+                                        Transcript (or) Grade Record  
+                                    </span>
+                                </a>
+                            @endif
                         @endforeach
                     </div>
                 @endif
