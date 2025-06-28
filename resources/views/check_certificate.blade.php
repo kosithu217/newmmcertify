@@ -461,7 +461,7 @@
                         @endif
                     </div>
                     <div class="col-md-9 profile-details text-center text-md-start">
-                        <h3 class="profile-name">{{ $profile->name }}</h3>
+                        <h4 class="profile-name">{{ $profile->name }}</h4>
                         @if($profile->phone)
                         <p><i class="fas fa-phone-alt"></i> <span>{{ $profile->phone }}</span></p>
                         @endif
