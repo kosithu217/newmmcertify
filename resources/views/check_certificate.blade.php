@@ -318,7 +318,7 @@
             <div class="certificate-header">
                 <img src="{{ asset($certificate->logo) }}" alt="{{ $certificate->name }} Logo" class="certificate-logo">
                 <div class="certificate-title">
-                    <h4  style="color: black;"><b>{{ $certificate->name }}<b></h4>
+                    <h4  style="color: black;font-weight: bold;">{{ $certificate->name }}</h4>
                 </div>
             </div>
             
