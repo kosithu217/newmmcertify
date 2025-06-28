@@ -117,10 +117,10 @@
             @endif
         </div>
 
-        <!-- Drag QR Side -->
-        <div class="col-md-4 col-12 mt-4 mt-md-0">
-            <div class="card shadow-sm p-4 text-center sticky-top" style="top: 20px;">
-                <h5 style="color: #6B3FA0;">QR Code Options</h5>
+        <!-- Drag QR Side - Fixed Position -->
+        <div class="col-md-4 col-12 mt-4 mt-md-0" style="position: relative;">
+            <div class="card shadow-sm p-3 text-center" style="position: fixed; width: 28%; max-width: 320px; top: 20px; right: 15px; z-index: 1000; max-height: 95vh; overflow-y: auto;">
+                <h5 style="color: #6B3FA0; position: sticky; top: 0; background: white; padding: 10px 0; margin: -16px -16px 16px -16px; z-index: 1001; ">QR Code Options</h5>
                 
                 <!-- Crop Mode Toggle -->
                 <div class="d-flex align-items-center mb-3">
