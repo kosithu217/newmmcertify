@@ -389,6 +389,9 @@
                                             <h5 class="section-title">Certificate Details</h5>
                                             <div class="card mb-4">
                                                 <div class="card-body">
+                                                    <!-- TinyMCE -->
+                                                    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+                                                    
                                                     <div class="mb-4">
                                                         <label for="textdesc" class="form-label fw-bold">Certificate Description</label>
                                                         <textarea id="textdesc" required placeholder="Provide a brief description of the certificate..." 
@@ -396,12 +399,30 @@
                                                         <div class="form-text">Briefly describe what this certificate represents</div>
                                                     </div>
 
-                                                    <div>
+                                                    <div class="mb-4">
                                                         <label for="textoutline" class="form-label fw-bold">Course Outlines & Learning Outcomes</label>
                                                         <p class="text-muted small mb-2">For internship certificates, please include job roles and responsibilities</p>
                                                         <textarea id="textoutline" required 
                                                             placeholder="Provide detailed course outlines, learning outcomes, or job responsibilities..." 
                                                             name="course_outline" class="form-control" rows="8">{!! $certificate ? $certificate->course_outline : '' !!}</textarea>
+                                                    </div>
+
+                                                    <script>
+                                                    tinymce.init({
+                                                        selector: '#textdesc, #textoutline',
+                                                        plugins: 'advlist autolink lists link image charmap print preview anchor',
+                                                        toolbar: 'undo redo | formatselect | fontselect | fontsizeselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
+                                                        menubar: false,
+                                                        height: 300,
+                                                        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size: 9px !important; }',
+                                                        font_size_formats: '9px 10px 12px 14px 16px 18px 20px 24px 30px 36px 48px',
+                                                        setup: function(editor) {
+                                                            editor.on('init', function() {
+                                                                this.getBody().style.fontSize = '9px';
+                                                            });
+                                                        }
+                                                    });
+                                                    </script>
                                                     </div>
                                                 </div>
                                             </div>
