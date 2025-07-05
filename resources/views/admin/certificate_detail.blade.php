@@ -168,6 +168,95 @@
                 <p class="mt-3 small text-muted">
                     Drag QR onto certificate, move it, resize it, crop the QR code, and download!
                 </p>
+
+                <div class="mt-4 pt-3 border-top">
+                    
+                    
+                    <div class="input-group input-group-dynamic mb-3">
+                        <input type="text" 
+                               id="certificateLink" 
+                               class="form-control form-control-sm border-end-0" 
+                               value="{{ url('/check-certificate/' . $certificate->uniqueId) }}" 
+                               readonly
+                               style="background: #f8f9fa; border-radius: 0.5rem 0 0 0.5rem !important;">
+                        <button class="btn btn-sm btn-outline-primary d-flex align-items-center" 
+                                type="button" 
+                                id="copyLinkBtn"
+                                style="border-radius: 0 0.5rem 0.5rem 0 !important;">
+                            <i class="material-icons me-1" style="font-size: 1.1em;">content_copy</i>
+                            <span>Copy</span>
+                        </button>
+                    </div>
+                    
+                    <p class="small text-muted mb-0">
+                        Share this link to verify the certificate's authenticity
+                    </p>
+                </div>
+                
+                <style>
+                    #copyLinkBtn {
+                        transition: all 0.2s ease-in-out;
+                    }
+                    #copyLinkBtn.copied {
+                        background-color: #4CAF50 !important;
+                        color: white !important;
+                        border-color: #4CAF50 !important;
+                    }
+                    #copyLinkBtn.copied i {
+                        transform: scale(1.2);
+                    }
+                </style>
+                
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const copyBtn = document.getElementById('copyLinkBtn');
+                        const linkInput = document.getElementById('certificateLink');
+                        
+                        copyBtn.addEventListener('click', async function() {
+                            try {
+                                await navigator.clipboard.writeText(linkInput.value);
+                                
+                                // Visual feedback
+                                const originalText = copyBtn.innerHTML;
+                                copyBtn.innerHTML = '<i class="material-icons me-1" style="font-size: 1.1em;">check</i>Copied!';
+                                copyBtn.classList.add('copied');
+                                
+                                // Reset button after 2 seconds
+                                setTimeout(() => {
+                                    copyBtn.innerHTML = originalText;
+                                    copyBtn.classList.remove('copied');
+                                }, 2000);
+                                
+                            } catch (err) {
+                                // Fallback for older browsers
+                                linkInput.select();
+                                document.execCommand('copy');
+                                
+                                // Visual feedback for fallback
+                                const originalText = copyBtn.innerHTML;
+                                copyBtn.innerHTML = '<i class="material-icons me-1" style="font-size: 1.1em;">check</i>Copied!';
+                                copyBtn.classList.add('copied');
+                                
+                                // Reset button after 2 seconds
+                                setTimeout(() => {
+                                    copyBtn.innerHTML = originalText;
+                                    copyBtn.classList.remove('copied');
+                                }, 2000);
+                            }
+                        });
+                        
+                        // Optional: Add hover effect
+                        copyBtn.addEventListener('mouseenter', function() {
+                            if (!this.classList.contains('copied')) {
+                                this.style.transform = 'translateY(-1px)';
+                            }
+                        });
+                        
+                        copyBtn.addEventListener('mouseleave', function() {
+                            this.style.transform = '';
+                        });
+                    });
+                </script>
             </div>
         </div>
     </div>
