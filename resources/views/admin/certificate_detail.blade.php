@@ -178,7 +178,7 @@
                                class="form-control form-control-sm border-end-0" 
                                value="{{ url('/check-certificate/' . $certificate->uniqueId) }}" 
                                readonly
-                               style="background: #f8f9fa; border-radius: 0.5rem 0 0 0.5rem !important;">
+                               style="background: #f8f9fa;border-radius: 0.5rem 0 0 0.5rem !important;height: 35px;">
                         <button class="btn btn-sm btn-outline-primary d-flex align-items-center" 
                                 type="button" 
                                 id="copyLinkBtn"
