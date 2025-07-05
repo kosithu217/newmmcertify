@@ -124,12 +124,75 @@
                 
                 <!-- Crop Mode Toggle -->
                 <div class="d-flex align-items-center mb-3">
-                    <div class="form-check form-switch me-3">
-                        <input class="form-check-input" type="checkbox" id="cropToggle">
-                        <label class="form-check-label" for="cropToggle">Enable Crop</label>
+                    <div class="me-3 d-flex align-items-center">
+                        <label class="custom-toggle" style="position: relative; display: inline-block; width: 60px; height: 30px; margin-right: 10px;">
+                            <input type="checkbox" id="cropToggle" style="opacity: 0; width: 0; height: 0;">
+                            <span class="slider round" style="
+                                position: absolute;
+                                cursor: pointer;
+                                top: 0;
+                                left: 0;
+                                right: 0;
+                                bottom: 0;
+                                background-color: #e0e0e0;
+                                transition: .4s;
+                                border-radius: 34px;
+                                box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+                            ">
+                                <span class="slider-knob" style="
+                                    position: absolute;
+                                    content: '';
+                                    height: 22px;
+                                    width: 22px;
+                                    left: 4px;
+                                    bottom: 4px;
+                                    background-color: white;
+                                    transition: .4s;
+                                    border-radius: 50%;
+                                    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                                "></span>
+                            </span>
+                        </label>
+                        <label for="cropToggle" style="cursor: pointer; user-select: none; display: flex; align-items: center; font-weight: 500; color: #333;">
+                            <i class="material-icons me-1" style="color: #6B3FA0; font-size: 1.2em;">crop</i>
+                            <span>Crop Mode</span>
+                        </label>
                     </div>
-                    <button id="autoCropBtn" class="btn btn-sm btn-info"><i class="material-icons fs-6 me-1">center_focus_strong</i>Auto Crop</button>
+                    <button id="autoCropBtn" class="btn btn-sm text-white" style="background-color: #6B3FA0; border: none; padding: 0.25rem 0.75rem; border-radius: 6px; transition: all 0.2s;">
+                        <i class="material-icons me-1" style="font-size: 1.1em; vertical-align: middle;">center_focus_strong</i>
+                        <span style="vertical-align: middle;">Auto Crop</span>
+                    </button>
                 </div>
+                <style>
+                    /* Toggle switch styles */
+                    .custom-toggle input:checked + .slider {
+                        background-color: rgba(107, 63, 160, 0.3);
+                    }
+                    .custom-toggle input:checked + .slider:before {
+                        transform: translateX(30px);
+                    }
+                    .custom-toggle input:checked + .slider .slider-knob {
+                        background-color: #6B3FA0;
+                        transform: translateX(30px);
+                    }
+                    .custom-toggle input:focus + .slider {
+                        box-shadow: 0 0 1px #6B3FA0;
+                    }
+                    .custom-toggle input:active + .slider .slider-knob {
+                        width: 28px;
+                        margin-left: -3px;
+                    }
+                    .custom-toggle input:checked:active + .slider .slider-knob {
+                        margin-left: 0;
+                    }
+                    /* Hover effects */
+                    .custom-toggle:hover .slider {
+                        background-color: #d0d0d0;
+                    }
+                    .custom-toggle:hover input:checked + .slider {
+                        background-color: rgba(107, 63, 160, 0.4);
+                    }
+                </style>
                 
                 <!-- Size Controls -->
                 <div class="mt-3" id="sizeControls">
