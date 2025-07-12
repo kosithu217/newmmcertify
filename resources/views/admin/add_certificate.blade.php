@@ -163,7 +163,7 @@
                                                 <input type="text" name="name" class="form-control form-control-lg" id="title"
                                                     placeholder="Provide Academic Institution Name"
                                                     value="{{ Auth::user()->name }}" required readonly>
-                                                <div class="form-text">This field is automatically filled with your account name</div>
+                                                <div class="form-text">This field is auto-filled and cannot be changed.</div>
                                             </div>
                                         </div>
 
@@ -396,12 +396,12 @@
                                                         <label for="textdesc" class="form-label fw-bold">Certificate Description</label>
                                                         <textarea id="textdesc" required placeholder="Provide a brief description of the certificate..." 
                                                             name="description" class="form-control" rows="4">{!! $certificate ? $certificate->description : '' !!}</textarea>
-                                                        <div class="form-text">Briefly describe what this certificate represents</div>
+                                                        <!-- <div class="form-text">Briefly describe what this certificate represents</div> -->
                                                     </div>
 
                                                     <div class="mb-4">
-                                                        <label for="textoutline" class="form-label fw-bold">Course Outlines & Learning Outcomes</label>
-                                                        <p class="text-muted small mb-2">For internship certificates, please include job roles and responsibilities</p>
+                                                        <label for="textoutline" class="form-label fw-bold">Course Outlines, Learning Outcomes, etc.</label>
+                                                        <!-- <p class="text-muted small mb-2">For internship certificates, please include job roles and responsibilities</p> -->
                                                         <textarea id="textoutline" required 
                                                             placeholder="Provide detailed course outlines, learning outcomes, or job responsibilities..." 
                                                             name="course_outline" class="form-control" rows="8">{!! $certificate ? $certificate->course_outline : '' !!}</textarea>
