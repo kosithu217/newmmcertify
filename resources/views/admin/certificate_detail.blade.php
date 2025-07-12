@@ -829,31 +829,60 @@
 
     autoCropBtn.addEventListener('click', performAutoCrop);
 
+    // Add debug logs for certificate image
+    console.log('Certificate image element:', certificateImage);
+    console.log('Certificate image source:', certificateImage ? certificateImage.src : 'Not found');
+    console.log('Certificate image natural dimensions:', {
+        width: certificateImage ? certificateImage.naturalWidth : 0,
+        height: certificateImage ? certificateImage.naturalHeight : 0
+    });
+    
     downloadBtn.addEventListener('click', function () {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
+        console.log('Download button clicked');
+        
+        try {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
 
-        // Set canvas size to match certificate
-        canvas.width = certificateImage.naturalWidth;
-        canvas.height = certificateImage.naturalHeight;
+            // Set canvas size to match certificate
+            canvas.width = certificateImage.naturalWidth;
+            canvas.height = certificateImage.naturalHeight;
+            console.log('Canvas created with dimensions:', { width: canvas.width, height: canvas.height });
 
-        // Draw certificate
-        ctx.drawImage(certificateImage, 0, 0, canvas.width, canvas.height);
+            // Draw certificate
+            ctx.drawImage(certificateImage, 0, 0, canvas.width, canvas.height);
+            console.log('Certificate drawn on canvas');
 
-        if (qrContainer.style.display !== 'none') {
-            const qrImg = new Image();
-            qrImg.src = qrCode.src;
-            qrImg.onload = function () {
-                const scale = certificateImage.naturalWidth / certificateImage.clientWidth;
-                const x = parseInt(qrContainer.style.left) * scale;
-                const y = parseInt(qrContainer.style.top) * scale;
-                const width = qrCode.offsetWidth * scale;
-                const height = qrCode.offsetHeight * scale;
+            if (qrContainer && qrContainer.style.display !== 'none' && qrCode && qrCode.src) {
+                console.log('QR container is visible, processing QR code...');
+                const qrImg = new Image();
+                qrImg.crossOrigin = 'Anonymous'; // Handle CORS if needed
+                qrImg.src = qrCode.src;
+                console.log('QR image source:', qrCode.src);
+                
+                qrImg.onload = function () {
+                    console.log('QR image loaded successfully');
+                    try {
+                        const scale = certificateImage.naturalWidth / certificateImage.clientWidth;
+                        const x = parseInt(qrContainer.style.left || 0) * scale;
+                        const y = parseInt(qrContainer.style.top || 0) * scale;
+                        const width = (qrCode.offsetWidth || qrImg.naturalWidth) * scale;
+                        const height = (qrCode.offsetHeight || qrImg.naturalHeight) * scale;
+                        
+                        console.log('QR code position and size:', { x, y, width, height, scale });
+                        
+                        ctx.drawImage(qrImg, x, y, width, height);
+                        console.log('QR code drawn on canvas');
 
-                ctx.drawImage(qrImg, x, y, width, height);
-
-                // Convert canvas to blob and send to server
-                canvas.toBlob(function (blob) {
+                        // Convert canvas to blob and send to server
+                        console.log('Converting canvas to blob...');
+                        canvas.toBlob(function (blob) {
+                            if (!blob) {
+                                console.error('Failed to create blob from canvas');
+                                alert('Failed to create image. Please try again.');
+                                return;
+                            }
+                            console.log('Blob created successfully, size:', blob.size);
                     const formData = new FormData();
                     formData.append('certificate_logo', blob, 'certificate_with_qr.png');
                     formData.append('certificate_id', "{{ $certificate->id }}");
@@ -865,20 +894,48 @@
                         },
                         body: formData
                     })
-                    .then(response => response.json())
+                    .then(response => {
+                        console.log('Server response status:', response.status);
+                        return response.json().catch(() => ({}));
+                    })
                     .then(data => {
-                        // No alert — just download
+                        console.log('Server response data:', data);
+                        // Create and trigger download
                         const link = document.createElement('a');
                         link.download = 'Certificate_with_QR.png';
                         link.href = URL.createObjectURL(blob);
+                        document.body.appendChild(link);
+                        console.log('Triggering download...');
                         link.click();
+                        document.body.removeChild(link);
+                        console.log('Download should have started');
                     })
                     .catch(error => {
-                        console.error('Error:', error);
-                        // Optional: show error notification here
+                        console.error('Error during download:', error);
+                        alert('An error occurred while downloading. Please check the console for details.');
                     });
-                }, 'image/png');
-            };
+                        }, 'image/png');
+                    } catch (e) {
+                        console.error('Error processing QR code:', e);
+                        alert('Error processing QR code. ' + e.message);
+                    }
+                };
+                
+                qrImg.onerror = function() {
+                    console.error('Failed to load QR code image');
+                    alert('Failed to load QR code image. Please check the console for details.');
+                };
+            } else {
+                console.log('QR container not found or hidden, downloading certificate without QR');
+                // Download just the certificate
+                const link = document.createElement('a');
+                link.download = 'Certificate.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }
+        } catch (e) {
+            console.error('Error in download handler:', e);
+            alert('An error occurred: ' + e.message);
         }
     });
 
