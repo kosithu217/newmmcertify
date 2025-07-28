@@ -32,7 +32,7 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize ">Certificates</p>
-                                <h4 class="mb-0 "><span style="font-size: 0.8em;">Issued Certificatess </span> {{ count(Auth::user()->certificates) }}</h4>
+                                <h4 class="mb-0 "><span style="font-size: 0.8em;">Issued Certificates </span> {{ count(Auth::user()->certificates) }}</h4>
                                 <h4 class="mb-0 "><span style="font-size: 0.8em;">Available Certificates </span> {{ Auth::user()->cert_limit }}</h4>
                             </div>
                         </div>

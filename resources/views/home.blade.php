@@ -74,7 +74,30 @@
                 color: #cdcdcd !important;
             }
             
-        </style>
+                    /* Contact info custom styles */
+            .contact-info-card{
+                background:#f8f9fa;
+                border:none;
+                border-radius:0.75rem;
+                padding:1.5rem;
+                box-shadow:0 0.5rem 1rem rgba(0,0,0,.05);
+            }
+            .contact-info-card h5{
+                color:#344767;
+            }
+            .contact-info-card i{
+                color:#fb8c00;
+            }
+            /* Ionicons inside contact card */
+            .contact-info-card ion-icon{
+                color:#fb8c00;
+                font-size:1.3rem;
+                vertical-align:middle;
+            }
+            </style>
+        <!-- Ionicons -->
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     </head>
     <body>
         <!-- Navbar bg-primary -->
@@ -656,6 +679,36 @@ Whether you're a job seeker looking to verify your certificates or a company ens
                 </div>
             </div>
             
+        </div>
+        <!-- Contact Information Section -->
+        <div class="container my-5">
+            <h2 class="text-center mb-4 title">Contact Information</h2>
+            <div class="text-center small my-3">
+            MM Certify is owned and managed by <strong>Grace Myanmar Global Enterprise Co., Ltd.</strong>, a company registered with the Directorate of Investment and Company Administration (DICA), Registration&nbsp;No.&nbsp;143701395.
+        </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-5">
+                    <div class="card contact-info-card h-100">
+                        <div class="card-body">
+                            <h5 class="fw-bold mb-1">Kyaw Si Thu Aung <span class="text-muted">@Fred</span></h5>
+                            <p class="mb-2 small text-uppercase text-primary">Product Solution Director</p>
+                            <p class="mb-2"><ion-icon name="call-outline"></ion-icon><a href="tel:+959799263405" class="text-decoration-none ms-2">+95&nbsp;(9)&nbsp;799263405</a></p>
+                            <p class="mb-0"><ion-icon name="mail-outline"></ion-icon><a href="mailto:ksta.fred@mmcertify.com" class="text-decoration-none ms-2">ksta.fred@mmcertify.com</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="card contact-info-card h-100">
+                        <div class="card-body text-md-end">
+                            <h5 class="fw-bold mb-1">Yan Naing Htun <span class="text-muted">(伍健權&nbsp;Wǔ&nbsp;Jiàn&nbsp;Lón)</span></h5>
+                            <p class="mb-2 small text-uppercase text-primary">Country Director (Thailand)</p>
+                            <p class="mb-2"><ion-icon name="call-outline"></ion-icon><a href="tel:+66634738566" class="text-decoration-none ms-2">+66&nbsp;(0)&nbsp;6-3473-8566</a></p>
+                            <p class="mb-0"><ion-icon name="mail-outline"></ion-icon><a href="mailto:countrydirector@mmcertify.com" class="text-decoration-none ms-2">countrydirector@mmcertify.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="container-fluid text-center mt-5 py-4" style="background: #344767; color: #fff;" id="footer">
