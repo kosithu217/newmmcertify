@@ -684,13 +684,13 @@ Whether you're a job seeker looking to verify your certificates or a company ens
         <div class="container my-5">
             <h2 class="text-center mb-4 title">Contact Information</h2>
             <div class="text-center small my-3">
-            MM Certify is owned and managed by <strong>Grace Myanmar Global Enterprise Co., Ltd.</strong>, a company registered with the Directorate of Investment and Company Administration (DICA), Registration&nbsp;No.&nbsp;143701395.
+            MMCertify.com is owned and managed by <strong>Grace Myanmar Global Enterprise Co., Ltd.</strong>, a company registered with the Directorate of Investment and Company Administration (DICA), Registration&nbsp;No.&nbsp;143701395.
         </div>
             <div class="row g-4 justify-content-center">
                 <div class="col-md-5">
                     <div class="card contact-info-card h-100">
                         <div class="card-body">
-                            <h5 class="fw-bold mb-1">Kyaw Si Thu Aung <span class="text-muted">@Fred</span></h5>
+                            <h5 class="fw-bold mb-1">Kyaw Si Thu Aung<span class="text-muted">@Fred</span></h5>
                             <p class="mb-2 small text-uppercase text-primary">Product Solution Director</p>
                             <p class="mb-2"><ion-icon name="call-outline"></ion-icon><a href="tel:+959799263405" class="text-decoration-none ms-2">+95&nbsp;(9)&nbsp;799263405</a></p>
                             <p class="mb-0"><ion-icon name="mail-outline"></ion-icon><a href="mailto:ksta.fred@mmcertify.com" class="text-decoration-none ms-2">ksta.fred@mmcertify.com</a></p>
