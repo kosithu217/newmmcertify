@@ -655,6 +655,22 @@ Whether you're a job seeker looking to verify your certificates or a company ens
                             {{ session('success') }}
                           </div>
                         @endif
+                        
+                        @if(session('error'))
+                          <div class="alert alert-danger text-center">
+                            {{ session('error') }}
+                          </div>
+                        @endif
+                        
+                        @if($errors->any())
+                          <div class="alert alert-danger">
+                            <ul class="mb-0">
+                              @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                              @endforeach
+                            </ul>
+                          </div>
+                        @endif
                         <form action="{{ route('contact.submit') }}" method="POST">
                           @csrf
                           <div class="mb-3">
@@ -700,7 +716,7 @@ Whether you're a job seeker looking to verify your certificates or a company ens
 
                 <div class="col-md-5">
                     <div class="card contact-info-card h-100">
-                        <div class="card-body text-md-end">
+                        <div class="card-body text-md-start">
                             <h5 class="fw-bold mb-1">Yan Naing Htun <span class="text-muted">(伍健權&nbsp;Wǔ&nbsp;Jiàn&nbsp;Lón)</span></h5>
                             <p class="mb-2 small text-uppercase text-primary">Country Director (Thailand)</p>
                             <p class="mb-2"><ion-icon name="call-outline"></ion-icon><a href="tel:+66634738566" class="text-decoration-none ms-2">+66&nbsp;(0)&nbsp;6-3473-8566</a></p>

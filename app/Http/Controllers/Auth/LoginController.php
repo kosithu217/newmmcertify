@@ -49,24 +49,37 @@ class LoginController extends Controller
     }
     
     public function contactSubmitForm(Request $request){
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email',
-            'message' => 'required|string',
+        // Log the contact form submission
+        \Log::info('Contact form submitted', [
+            'name' => $request->name,
+            'email' => $request->email,
+            'message' => substr($request->message, 0, 100) . '...'
         ]);
 
-        
-        $details = [
-            'title' => "Contact Us Message from $request->name($request->email).",
-            'body' => $request->message,
-        ];
-    
-        Mail::send('emails.mail_code', $details, function ($message) {
-            $message->to('luisluistun@gmail.com')// contact us message receiver mail
-                    ->subject('Contact Us Mail');
-        });
+        try {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email',
+                'message' => 'required|string',
+            ]);
 
-        return back()->with('success', 'Your message has been sent successfully!');
+            $details = [
+                'title' => "Contact Us Message from $request->name($request->email).",
+                'body' => $request->message,
+            ];
+        
+            Mail::send('emails.mail_code', $details, function ($message) {
+                $message->to('luisluistun@gmail.com') // contact us message receiver mail
+                        ->subject('Contact Us Mail');
+            });
+
+            \Log::info('Contact form email sent successfully');
+            return back()->with('success', 'Your message has been sent successfully!');
+            
+        } catch (\Exception $e) {
+            \Log::error('Contact form error: ' . $e->getMessage());
+            return back()->with('error', 'Sorry, there was an error sending your message. Please try again.');
+        }
     }
     
 }
