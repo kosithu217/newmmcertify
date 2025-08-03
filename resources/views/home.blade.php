@@ -801,3 +801,4 @@ Whether you're a job seeker looking to verify your certificates or a company ens
     <script src="{{ asset('back/js/core/popper.min.js') }}"></script>
     
 </html>
+                        

@@ -23,6 +23,7 @@ use Intervention\Image\Decoders\FilePathImageDecoder;
 use Intervention\Image\Typography\FontFactory;
 
 use Illuminate\Support\Facades\Mail;
+use App\Models\AdminPermission;
 
 class AdminController extends Controller
 {
@@ -340,6 +341,114 @@ class AdminController extends Controller
         $certificate = Certificate::find($id);
 
         return view('admin.certificate_detail', compact('certificate'));
+    }
+
+    // Admin Management Methods
+    public function adminManagement()
+    {
+        $admins = User::role('admin')->with('adminPermission')->get();
+        return view('admin.admin_management.index', compact('admins'));
+    }
+
+    public function createAdmin()
+    {
+        $availableMenus = AdminPermission::getAvailableMenus();
+        return view('admin.admin_management.create', compact('availableMenus'));
+    }
+
+    public function storeAdmin(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
+            'is_super_admin' => 'boolean',
+            'menu_permissions' => 'array',
+            'menu_permissions.*' => 'string'
+        ]);
+
+        // Create the admin user
+        $admin = User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'approved' => 1,
+            'cert_limit' => 0
+        ]);
+
+        // Assign admin role
+        $admin->assignRole('admin');
+
+        // Create admin permissions
+        AdminPermission::create([
+            'user_id' => $admin->id,
+            'menu_permissions' => $validated['menu_permissions'] ?? [],
+            'is_super_admin' => $validated['is_super_admin'] ?? false
+        ]);
+
+        return redirect()->route('admin.admin-management')->with('success', 'Admin created successfully!');
+    }
+
+    public function editAdmin($id)
+    {
+        $admin = User::with('adminPermission')->findOrFail($id);
+        $availableMenus = AdminPermission::getAvailableMenus();
+        
+        return view('admin.admin_management.edit', compact('admin', 'availableMenus'));
+    }
+
+    public function updateAdmin(Request $request, $id)
+    {
+        $admin = User::findOrFail($id);
+        
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'password' => 'nullable|string|min:8|confirmed',
+            'is_super_admin' => 'boolean',
+            'menu_permissions' => 'array',
+            'menu_permissions.*' => 'string'
+        ]);
+
+        // Update admin user
+        $admin->update([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+        ]);
+
+        if (!empty($validated['password'])) {
+            $admin->update(['password' => Hash::make($validated['password'])]);
+        }
+
+        // Update admin permissions
+        $permission = $admin->adminPermission;
+        if ($permission) {
+            $permission->update([
+                'menu_permissions' => $validated['menu_permissions'] ?? [],
+                'is_super_admin' => $validated['is_super_admin'] ?? false
+            ]);
+        } else {
+            AdminPermission::create([
+                'user_id' => $admin->id,
+                'menu_permissions' => $validated['menu_permissions'] ?? [],
+                'is_super_admin' => $validated['is_super_admin'] ?? false
+            ]);
+        }
+
+        return redirect()->route('admin.admin-management')->with('success', 'Admin updated successfully!');
+    }
+
+    public function deleteAdmin($id)
+    {
+        $admin = User::findOrFail($id);
+        
+        // Prevent deleting super admin or self
+        if ($admin->isSuperAdmin() || $admin->id === Auth::id()) {
+            return redirect()->back()->with('error', 'Cannot delete this admin.');
+        }
+
+        $admin->delete();
+        return redirect()->route('admin.admin-management')->with('success', 'Admin deleted successfully!');
     }
 
 }

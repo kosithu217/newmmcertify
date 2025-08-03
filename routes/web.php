@@ -130,35 +130,54 @@ Route::delete('/profile/{id}', [ProfileController::class, 'destroy'])->name('use
 
 
 Route::middleware(['admin-group'])->prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
-    Route::get('/blog/test', [BlogController::class, 'test'])->name('admin.blog.test');
+    // Dashboard
+    Route::middleware(['menu.permission:dashboard'])->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    });
     
     // Blog Routes
-    Route::get('/blog', [BlogController::class, 'index'])->name('admin.blog');
-    Route::get('/blog/create', [BlogController::class, 'create'])->name('admin.blog.create');
-    Route::post('/blog', [BlogController::class, 'store'])->name('admin.blog.store');
+    Route::middleware(['menu.permission:blog'])->group(function () {
+        Route::get('/blog/test', [BlogController::class, 'test'])->name('admin.blog.test');
+        Route::get('/blog', [BlogController::class, 'index'])->name('admin.blog');
+        Route::get('/blog/create', [BlogController::class, 'create'])->name('admin.blog.create');
+        Route::post('/blog', [BlogController::class, 'store'])->name('admin.blog.store');
+        Route::delete('/blog/image/{id}', [BlogController::class, 'deleteImage'])->name('admin.blog.delete-image');
+        Route::post('/blog/upload-image', [BlogController::class, 'uploadImage'])->name('admin.blog.upload-image');
+        Route::get('/blog/{blog}/edit', [BlogController::class, 'edit'])->name('admin.blog.edit');
+        Route::put('/blog/{blog}', [BlogController::class, 'update'])->name('admin.blog.update');
+        Route::delete('/blog/{blog}', [BlogController::class, 'destroy'])->name('admin.blog.delete');
+    });
     
-    // More specific routes first
-    Route::delete('/blog/image/{id}', [BlogController::class, 'deleteImage'])->name('admin.blog.delete-image');
-    Route::post('/blog/upload-image', [BlogController::class, 'uploadImage'])->name('admin.blog.upload-image');
+    // User Management Routes
+    Route::middleware(['menu.permission:users'])->group(function () {
+        Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+        Route::get('/user/{id}/approve', [AdminController::class, 'userApprove'])->name('admin.userApprove');
+        Route::get('/user/create', [AdminController::class, 'userCreate'])->name('admin.userCreate');
+        Route::post('/register', [AdminController::class, 'register'])->name('admin-register');
+        Route::post('/register-uni', [AdminController::class, 'registerUni'])->name('admin-register-uni');
+        Route::get('/user/{id}/edit', [AdminController::class, 'userEdit'])->name('admin.userEdit');
+        Route::post('/user/update', [AdminController::class, 'userUpdate'])->name('admin.userUpdate');
+        Route::post('/user/updateUni', [AdminController::class, 'userUpdateUni'])->name('admin.userUpdateUni');
+        Route::get('/user/{id}/limit', [AdminController::class, 'userLimit'])->name('admin.userLimit');
+        Route::post('/user/limit-update', [AdminController::class, 'userLimitUpdate'])->name('admin.userLimitUpdate');
+    });
     
-    // Generic blog routes
-    Route::get('/blog/{blog}/edit', [BlogController::class, 'edit'])->name('admin.blog.edit');
-    Route::put('/blog/{blog}', [BlogController::class, 'update'])->name('admin.blog.update');
-    Route::delete('/blog/{blog}', [BlogController::class, 'destroy'])->name('admin.blog.delete');
-    Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
-    Route::get('/user/{id}/approve', [AdminController::class, 'userApprove'])->name('admin.userApprove');
-    Route::get('/user/create', [AdminController::class, 'userCreate'])->name('admin.userCreate');
-    Route::post('/register', [AdminController::class, 'register'])->name('admin-register');
-    Route::post('/register-uni', [AdminController::class, 'registerUni'])->name('admin-register-uni');
-    Route::get('/user/{id}/edit', [AdminController::class, 'userEdit'])->name('admin.userEdit');
-    Route::post('/user/update', [AdminController::class, 'userUpdate'])->name('admin.userUpdate');
-    Route::post('/user/updateUni', [AdminController::class, 'userUpdateUni'])->name('admin.userUpdateUni');
-    Route::get('/user/{id}/limit', [AdminController::class, 'userLimit'])->name('admin.userLimit');
-    Route::post('/user/limit-update', [AdminController::class, 'userLimitUpdate'])->name('admin.userLimitUpdate');
-    Route::get('/certificates', [AdminController::class, 'certificates'])->name('admin.certificates');
-    Route::post('/certificate/qr/{id}', [AdminController::class, 'createQR'])->name('admin.createQR');
-    Route::get('/certificates/detail/{id}', [AdminController::class, 'certificateDetail'])->name('admin.certificate_detail');
+    // Certificate Routes
+    Route::middleware(['menu.permission:certificates'])->group(function () {
+        Route::get('/certificates', [AdminController::class, 'certificates'])->name('admin.certificates');
+        Route::post('/certificate/qr/{id}', [AdminController::class, 'createQR'])->name('admin.createQR');
+        Route::get('/certificates/detail/{id}', [AdminController::class, 'certificateDetail'])->name('admin.certificate_detail');
+    });
+    
+    // Admin Management Routes
+    Route::middleware(['menu.permission:admin_management'])->group(function () {
+        Route::get('/admin-management', [AdminController::class, 'adminManagement'])->name('admin.admin-management');
+        Route::get('/admin-management/create', [AdminController::class, 'createAdmin'])->name('admin.create-admin');
+        Route::post('/admin-management', [AdminController::class, 'storeAdmin'])->name('admin.store-admin');
+        Route::get('/admin-management/{id}/edit', [AdminController::class, 'editAdmin'])->name('admin.edit-admin');
+        Route::put('/admin-management/{id}', [AdminController::class, 'updateAdmin'])->name('admin.update-admin');
+        Route::delete('/admin-management/{id}', [AdminController::class, 'deleteAdmin'])->name('admin.delete-admin');
+    });
 });
 
 

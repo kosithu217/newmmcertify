@@ -58,4 +58,42 @@ class User extends Authenticatable
     {
         return $this->hasMany(Certificate::class);
     }
+
+    public function adminPermission()
+    {
+        return $this->hasOne(AdminPermission::class);
+    }
+
+    /**
+     * Check if user has permission to access a specific menu
+     */
+    public function hasMenuPermission($menuKey)
+    {
+        if (!$this->hasRole('admin')) {
+            return false;
+        }
+
+        $permission = $this->adminPermission;
+        if (!$permission) {
+            // If no permission record exists, create a temporary super admin permission
+            // This handles existing admin users who don't have permissions set up yet
+            \App\Models\AdminPermission::create([
+                'user_id' => $this->id,
+                'menu_permissions' => [],
+                'is_super_admin' => true
+            ]);
+            return true;
+        }
+
+        return $permission->hasMenuPermission($menuKey);
+    }
+
+    /**
+     * Check if user is super admin
+     */
+    public function isSuperAdmin()
+    {
+        $permission = $this->adminPermission;
+        return $permission ? $permission->is_super_admin : false;
+    }
 }
