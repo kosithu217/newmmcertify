@@ -53,8 +53,8 @@ class AdminController extends Controller
     
     public function users()
     {
-        $colleges = User::role('user')->get();
-        $employers = User::role('employer')->get();
+        $colleges = User::role('user')->orderBy('id', 'desc')->get();
+        $employers = User::role('employer')->orderBy('id', 'desc')->get();
         
         return view('admin.admin_users', compact('colleges', 'employers'));
     }

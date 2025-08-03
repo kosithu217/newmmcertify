@@ -27,7 +27,7 @@
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                         <div class="bg-gradient-info shadow-primary border-radius-lg pt-4 pb-3">
                             <a href="{{ url('/admin/user/create') }}" class="btn btn-success" style="float: right;margin: 0; margin-right: 2em;">Create</a>
-                            <h6 class="text-white text-capitalize ps-3">College / University Lists</h6>
+                            <h6 class="text-white text-capitalize ps-3">College / University Listssss</h6>
                             <p></p>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            No</th>
+                                            ID</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Registration Name / Number</th>
@@ -67,7 +67,7 @@
                                         
                                     <tr>
                                         <td>
-                                            <p class="text-xs font-weight-bold mb-0">{{ $key+1 }}</p>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $user->id }}</p>
                                         </td>
                                         <td>
                                             <p class="text-xs font-weight-bold mb-0">{{ $user->name }}</p>
@@ -121,7 +121,7 @@
     </div>
     
     <!--Employers-->
-    <div class="container-fluid py-4">
+    <!-- <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12">
                 <div class="card my-4">
@@ -138,7 +138,7 @@
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            No</th>
+                                            ID</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Name</th>
@@ -158,7 +158,7 @@
                                     <tr>
                                         
                                         <td>
-                                            <p class="text-xs font-weight-bold mb-0">{{ $key+1 }}</p>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $user->id }}</p>
                                         </td>
                                         <td>
                                             <p class="text-xs font-weight-bold mb-0">{{ $user->name }}</p>
@@ -195,7 +195,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 @endsection
 
 @section('js')
@@ -206,13 +206,17 @@
         $(document).ready(function(){
             
             var table = $('#users').DataTable({
+                            order: [[0, 'desc']], // Sort by first column (No/ID) in descending order
                             columnDefs: [{
+                                targets: [7], // Make the last column (Actions) non-sortable
                                 orderable: false,
                             }],
                         });
             
             var employers = $('#employers').DataTable({
+                            order: [[0, 'desc']], // Sort by first column (No/ID) in descending order
                             columnDefs: [{
+                                targets: [4], // Make the last column (Actions) non-sortable
                                 orderable: false,
                             }],
                         });

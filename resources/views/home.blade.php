@@ -110,7 +110,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
+                    <ul  style="font-size: 13px;" class="navbar-nav ms-auto">
                         
                         <!--<li class="nav-item">-->
                         <!--    <a class="nav-link text-primary ms-4" href="#">About Us</a>-->
