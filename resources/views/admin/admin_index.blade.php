@@ -23,6 +23,7 @@
 
         <div class="row">
 
+            @hasrole('super-admin')
             <div class="col-md-4 col-sm-6 mt-sm-4 mt-4">
                 <a href="{{ url('/admin/users') }}">
                     <div class="card  mb-2">
@@ -70,6 +71,7 @@
                     </div>
                 </a>
             </div>
+            @endhasrole
 
                     
 
