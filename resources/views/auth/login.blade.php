@@ -25,51 +25,51 @@
                     <!--</li>-->
                     
                     <li class="nav-item dropdown ms-4">
-                        <a class="nav-link dropdown-toggle text-primary" href="#" id="dropdownMenuButton" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a style="font-size: 13px;" class="nav-link dropdown-toggle text-primary" href="#" id="dropdownMenuButton" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             About Us
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <ul style="font-size: 13px;" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <li><a class="dropdown-item" href="{{ url('/#about-us') }}">About Us</a></li>
                             <li><a class="dropdown-item" href="{{ url('/#vision-mission') }}">Vision & Mission</a></li>
                             <li><a class="dropdown-item" href="{{ url('/#core-values') }}">Core Values</a></li>
                         </ul>
                     </li>
                     
-                    <li class="nav-item">
+                    <li style="font-size: 13px;" class="nav-item">
                         <a class="nav-link text-primary ms-4" href="{{ url('/#product-service') }}">Product & Service</a>
                     </li>
                     
-                    <li class="nav-item">
+                    <li style="font-size: 13px;"  class="nav-item">
                         <a class="nav-link text-primary ms-4" href="{{ url('/#users-benefits') }}">Users' Benefits</a>
                     </li>
                     
-                    <li class="nav-item">
+                    <li style="font-size: 13px;" class="nav-item">
                         <a class="nav-link text-primary ms-4" href="{{ url('/#faqs') }}">FAQs</a>
                     </li>
                         
                     @guest
-                        <li class="nav-item">
+                        <li style="font-size: 13px;" class="nav-item">
                             <a class="nav-link text-primary ms-4" href="{{ route('register') }}">Sign Up</a>
                         </li>
-                        <li class="nav-item">
+                        <li style="font-size: 13px;" class="nav-item">
                             <a class="nav-link text-primary ms-4" href="{{ route('login') }}">Login</a>
                         </li>
                     @else
                         
                         @hasrole('admin')
-                            <li class="nav-item">
+                            <li style="font-size: 13px;" class="nav-item">
                                 <a class="nav-link text-primary ms-4" href="{{ url('/admin') }}">
                                     <i class="fas fa-cogs"></i> Admin
                                 </a>
                             </li>
                         @elsehasrole('user')
-                            <li class="nav-item">
+                            <li style="font-size: 13px;" class="nav-item">
                                 <a class="nav-link text-primary ms-4" href="{{ url('/user') }}">
                                     <i class="fas fa-cogs"></i> Admin
                                 </a>
                             </li>
                         @endhasrole
-                        <li class="nav-item">
+                        <li style="font-size: 13px;" class="nav-item">
                             <a class="nav-link text-primary ms-4" href="{{ route('logout') }}"
                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                Logout
@@ -80,7 +80,7 @@
                         </li>
                     @endguest
                     
-                    <li class="nav-item">
+                    <li style="font-size: 13px;" class="nav-item">
                         <a class="nav-link text-primary ms-4" href="{{ url('/check') }}">
                             <i class="fas fa-search"></i> Check
                         </a>

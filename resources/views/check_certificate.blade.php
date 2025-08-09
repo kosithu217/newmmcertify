@@ -353,7 +353,7 @@
                     <h3 class="section-title">
                         <i class="fas fa-book-open me-2"></i>Course Outline
                     </h3>
-                    <div class="course-outline">
+                    <div >
                         {!! $certificate->course_outline !!}
                     </div>
                 @endif
@@ -463,7 +463,7 @@
                     <div class="col-md-9 profile-details text-center text-md-start">
                         <h5 class="profile-name">{{ $profile->name }}</h5>
                         @if($profile->phone)
-                        <p><i class="fas fa-phone-alt"></i> <span>{{ $profile->phone }}</span></p>
+                        <p><i class="fa-solid fa-phone"></i> <span>{{ $profile->phone }}</span></p>
                         @endif
                         @if($profile->address)
                         <p style="text-align: justify;"><i class="fas fa-map-marker-alt"></i> <span>{{ $profile->address }}</span></p>
