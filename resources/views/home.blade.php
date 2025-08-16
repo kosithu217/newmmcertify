@@ -100,96 +100,9 @@
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     </head>
     <body>
-        <!-- Navbar bg-primary -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white">
-            <div class="container">
-                <a class="navbar-brand text-white" href="{{ url('/') }}">
-                    <img src="{{ asset('mmlogo.jpg') }}" style="height: 100px;" />
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul  style="font-size: 13px;" class="navbar-nav ms-auto">
-                        
-                        <!--<li class="nav-item">-->
-                        <!--    <a class="nav-link text-primary ms-4" href="#">About Us</a>-->
-                        <!--</li>-->
-                        
-                        <li class="nav-item dropdown ms-4">
-                            <a class="nav-link dropdown-toggle text-primary" href="#" id="dropdownMenuButton" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                About Us
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item" href="{{ url('/#about-us') }}">About Us</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/#vision-mission') }}">Vision & Mission</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/#core-values') }}">Core Values</a></li>
-                            </ul>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link text-primary ms-4" href="{{ url('/#product-service') }}">Product & Service</a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link text-primary ms-4" href="{{ url('/#users-benefits') }}">Users' Benefits</a>
-                        </li>
-
-
-
-                        <!--<li class="nav-item">-->
-                        <!--    <a class="nav-link text-primary ms-4" href="{{ route('blog.index') }}">Blog Post</a>-->
-                        <!--</li>-->
-                        
-                        <li class="nav-item">
-                            <a class="nav-link text-primary ms-4" href="{{ url('/#faqs') }}">FAQs</a>
-                        </li>
-                            
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link text-primary ms-4" href="{{ route('register') }}">Sign Up</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-primary ms-4" href="{{ route('login') }}">Login</a>
-                            </li>
-                        @else
-                            
-                            @hasrole('admin')
-                                <li class="nav-item">
-                                    <a class="nav-link text-primary ms-4" href="{{ url('/admin') }}">
-                                        <i class="fas fa-cogs"></i> Admin
-                                    </a>
-                                </li>
-                            @elsehasrole('user')
-                                <li class="nav-item">
-                                    <a class="nav-link text-primary ms-4" href="{{ url('/user') }}">
-                                        <i class="fas fa-cogs"></i> Admin
-                                    </a>
-                                </li>
-                            @endhasrole
-                        
-                            
-                            <li class="nav-item">
-                                <a class="nav-link text-primary ms-4" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                   Logout
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </li>
-                        @endguest
-                        
-                        <li class="nav-item">
-                            <a class="nav-link text-primary ms-4" href="{{ url('/check') }}">
-                                <i class="fas fa-search"></i> Check
-                            </a>
-                        </li>
-                            
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <!-- Include Navigation -->
+        @include('nav')
+       
         <!--<div class="background-image">-->
         <!--    <div class="overlay">-->
         <!--        <h1>Coming Soon</h1>-->

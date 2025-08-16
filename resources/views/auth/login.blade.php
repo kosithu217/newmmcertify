@@ -9,127 +9,80 @@
 </head>
 <body>
     <!-- Navbar bg-primary -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
-        <div class="container">
-            <a class="navbar-brand text-white" href="{{ url('/') }}">
-                <img src="{{ asset('mmlogo.jpg') }}" style="height: 100px;" />
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    
-                    <!--<li class="nav-item">-->
-                    <!--    <a class="nav-link text-primary ms-4" href="#">About Us</a>-->
-                    <!--</li>-->
-                    
-                    <li class="nav-item dropdown ms-4">
-                        <a style="font-size: 13px;" class="nav-link dropdown-toggle text-primary" href="#" id="dropdownMenuButton" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            About Us
-                        </a>
-                        <ul style="font-size: 13px;" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="{{ url('/#about-us') }}">About Us</a></li>
-                            <li><a class="dropdown-item" href="{{ url('/#vision-mission') }}">Vision & Mission</a></li>
-                            <li><a class="dropdown-item" href="{{ url('/#core-values') }}">Core Values</a></li>
-                        </ul>
-                    </li>
-                    
-                    <li style="font-size: 13px;" class="nav-item">
-                        <a class="nav-link text-primary ms-4" href="{{ url('/#product-service') }}">Product & Service</a>
-                    </li>
-                    
-                    <li style="font-size: 13px;"  class="nav-item">
-                        <a class="nav-link text-primary ms-4" href="{{ url('/#users-benefits') }}">Users' Benefits</a>
-                    </li>
-                    
-                    <li style="font-size: 13px;" class="nav-item">
-                        <a class="nav-link text-primary ms-4" href="{{ url('/#faqs') }}">FAQs</a>
-                    </li>
-                        
-                    @guest
-                        <li style="font-size: 13px;" class="nav-item">
-                            <a class="nav-link text-primary ms-4" href="{{ route('register') }}">Sign Up</a>
-                        </li>
-                        <li style="font-size: 13px;" class="nav-item">
-                            <a class="nav-link text-primary ms-4" href="{{ route('login') }}">Login</a>
-                        </li>
-                    @else
-                        
-                        @hasrole('admin')
-                            <li style="font-size: 13px;" class="nav-item">
-                                <a class="nav-link text-primary ms-4" href="{{ url('/admin') }}">
-                                    <i class="fas fa-cogs"></i> Admin
-                                </a>
-                            </li>
-                        @elsehasrole('user')
-                            <li style="font-size: 13px;" class="nav-item">
-                                <a class="nav-link text-primary ms-4" href="{{ url('/user') }}">
-                                    <i class="fas fa-cogs"></i> Admin
-                                </a>
-                            </li>
-                        @endhasrole
-                        <li style="font-size: 13px;" class="nav-item">
-                            <a class="nav-link text-primary ms-4" href="{{ route('logout') }}"
-                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                               Logout
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </li>
-                    @endguest
-                    
-                    <li style="font-size: 13px;" class="nav-item">
-                        <a class="nav-link text-primary ms-4" href="{{ url('/check') }}">
-                            <i class="fas fa-search"></i> Check
-                        </a>
-                    </li>
-                        
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="container mt-5">
+    @include('nav')
+    
+    <style>
+      /* Full background image like register/check pages */
+      body { min-height: 100vh; position: relative; overflow-x: hidden; }
+      body::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: url("{{ asset('uri_ifs___M_k8o0SNw4dgbLNtQIQhXcgDGtRdDqrLY-BrlYIYsO-Ek.webp') }}") center/cover no-repeat;
+        opacity: 0.12; /* subtle backdrop */
+        z-index: -1;
+      }
+      .login-hero { min-height: calc(100vh - 120px); display: flex; align-items: center; padding: 40px 0; }
+      .login-card {
+        max-width: 520px; 
+        margin: 0 auto; 
+        background-color: #1877F2;
+         color: #fff;
+        border-radius: 18px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); padding: 28px;
+      }
+      .login-title { font-weight: 700; font-size: 22px; text-align: center; margin-bottom: 18px; }
+      .login-label { color: rgba(255,255,255,0.92); font-weight: 600; font-size: 12px; letter-spacing: .3px; }
+      .login-input.form-control { border-radius: 999px; background: #fff; border: none; height: 44px; padding-left: 16px; }
+      .login-input.form-control:focus { box-shadow: 0 0 0 0.2rem rgba(255,255,255,0.35); }
+      .login-btn { background: #e8c98f; color: #333; border: none; border-radius: 999px; padding: 10px 18px; font-weight: 700; width: 100%; }
+      .login-btn:hover { background: #dbb971; color: #333; }
+      .login-links a { color: #fff; opacity: .95; text-decoration: none; font-size: 13px; }
+      .login-links a:hover { text-decoration: underline; }
+    </style>
+
+    <section class="login-hero">
+      <div class="container">
         <div class="row justify-content-center">
-            
-            @session('success')
-                <p class="text-white text-center py-3 mb-3 bg-success">{{ session('success') }}</p>
-            @endsession
-            
-            <div class="col-md-6">
-                <h2 class="text-center mb-4">Login</h2>
-                <form method="POST" action="{{ route('login') }}">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required>
-                        @error('email')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required>
-                        @error('password')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                        <label class="form-check-label" for="remember">Remember Me</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Login</button>
-                    <div class="mt-3 text-center">
-                        <a href="{{ route('register') }}">Don't have an account? Register</a>
-                    </div>
-                    <div class="mt-3 text-center">
-                        <a href="{{ route('reset') }}">Reset Password.</a>
-                    </div>
-                </form>
+          @session('success')
+            <p class="text-white text-center py-2 mb-3 bg-success">{{ session('success') }}</p>
+          @endsession
+
+          <div class="col-12 col-md-8 col-lg-6">
+            <div class="login-card">
+              <h2 class="login-title">Log in</h2>
+              <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <div class="mb-3">
+                  <label for="email" class="login-label form-label">Email</label>
+                  <input type="email" class="form-control login-input @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required>
+                  @error('email')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="login-label form-label">Password</label>
+                  <input type="password" class="form-control login-input @error('password') is-invalid @enderror" id="password" name="password" required>
+                  @error('password')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                  <label class="form-check-label" for="remember" style="color: rgba(255,255,255,0.9)">Remember Me</label>
+                </div>
+                <button type="submit" class="login-btn">Log in</button>
+                <div class="mt-3 text-center login-links">
+                  <a href="{{ route('register') }}">Don't have an account? Register</a>
+                </div>
+                <div class="mt-2 text-center login-links">
+                  <a href="{{ route('reset') }}">Reset Password</a>
+                </div>
+              </form>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
+    </section>
 </body>
 
     <script src="{{ asset('back/js/core/jquery.min.js') }}"></script>
