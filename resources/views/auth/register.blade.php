@@ -248,6 +248,39 @@
             display: block;
         }
 
+        /* Password Toggle Styles */
+        .password-input-wrapper {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #6c757d;
+            cursor: pointer;
+            padding: 4px;
+            font-size: 16px;
+            transition: color 0.3s ease;
+            z-index: 10;
+        }
+
+        .password-toggle:hover {
+            color: #667eea;
+        }
+
+        .password-toggle:focus {
+            outline: none;
+            color: #667eea;
+        }
+
+        .form-control.has-toggle {
+            padding-right: 45px;
+        }
+
         .password-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -375,6 +408,29 @@
             color: #764ba2;
         }
 
+        /* Navbar Toggler Fix */
+        .navbar-toggler {
+            border: 1px solid rgba(0,0,0,.1);
+            border-radius: 0.375rem;
+            padding: 0.25rem 0.5rem;
+            background: transparent;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            display: inline-block;
+            width: 1.5em;
+            height: 1.5em;
+            vertical-align: middle;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100%;
+        }
+
         @media (max-width: 768px) {
             .registration-wrapper {
                 margin: 10px;
@@ -453,7 +509,12 @@
                         <div class="password-row">
                             <div class="form-group">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required>
+                                <div class="password-input-wrapper">
+                                    <input type="password" class="form-control has-toggle @error('password') is-invalid @enderror" id="password" name="password" required>
+                                    <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                                        <i class="fas fa-eye" id="password-eye"></i>
+                                    </button>
+                                </div>
                                 @error('password')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -461,7 +522,12 @@
 
                             <div class="form-group">
                                 <label for="password_confirmation" class="form-label">Confirm Password</label>
-                                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                                <div class="password-input-wrapper">
+                                    <input type="password" class="form-control has-toggle" id="password_confirmation" name="password_confirmation" required>
+                                    <button type="button" class="password-toggle" onclick="togglePassword('password_confirmation')">
+                                        <i class="fas fa-eye" id="password_confirmation-eye"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
@@ -547,7 +613,12 @@
                         <div class="password-row">
                             <div class="form-group">
                                 <label for="password1" class="form-label">Password</label>
-                                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password1" name="password" required>
+                                <div class="password-input-wrapper">
+                                    <input type="password" class="form-control has-toggle @error('password') is-invalid @enderror" id="password1" name="password" required>
+                                    <button type="button" class="password-toggle" onclick="togglePassword('password1')">
+                                        <i class="fas fa-eye" id="password1-eye"></i>
+                                    </button>
+                                </div>
                                 @error('password')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -555,7 +626,12 @@
 
                             <div class="form-group">
                                 <label for="password_confirmation1" class="form-label">Confirm Password</label>
-                                <input type="password" class="form-control" id="password_confirmation1" name="password_confirmation" required>
+                                <div class="password-input-wrapper">
+                                    <input type="password" class="form-control has-toggle" id="password_confirmation1" name="password_confirmation" required>
+                                    <button type="button" class="password-toggle" onclick="togglePassword('password_confirmation1')">
+                                        <i class="fas fa-eye" id="password_confirmation1-eye"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
@@ -571,19 +647,19 @@
                                 <strong>Description of Services</strong><br>
                                 MM Certify provides verification services to confirm the authenticity and integrity of educational and professional credentials. Our services are available to individuals, institutions, employers, and other organizations requiring credential validation.<br><br>
                                 <strong>🔐 PRIVACY POLICY</strong><br>
-                                At MM Verify, we are committed to protecting your privacy. This Privacy Policy outlines how we collect, use, and safeguard your information when you use our certificate verification services and platform.<br><br>
+                                At MM Certify, we are committed to protecting your privacy. This Privacy Policy outlines how we collect, use, and safeguard your information when you use our certificate verification services and platform.<br><br>
                                 <em>(Full Terms of Use & Privacy Policy available at <a href="{{ url('/terms-and-conditions') }}" target="_blank">this link</a>.)</em>
                             </div>
                             <div class="terms-checkbox">
                                 <input class="accept-terms" type="checkbox" value="1" id="acceptTerms2">
                                 <label for="acceptTerms2">
-                                    By clicking, I accept the terms of use and privacy policy of this platform as may be applicable.
+                                    By clicking, I accept the terms of use and privacy policy of this platform.
                                 </label>
                             </div>
                         </div>
 
                         <button type="submit" class="submit-btn register-btn" disabled>
-                            <i class="fas fa-university me-2"></i>Register Institution
+                            <i class="fas fa-university me-2"></i>Submit
                         </button>
 
                         <div class="login-link">
@@ -597,6 +673,9 @@
         </div>
     </div>
 
+    <!-- Bootstrap JavaScript Bundle (Required for navbar toggler) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script>
         function switchTab(tabName) {
             // Update tab buttons
@@ -617,12 +696,41 @@
             });
         });
 
+        // Password toggle functionality
+        function togglePassword(fieldId) {
+            const passwordField = document.getElementById(fieldId);
+            const eyeIcon = document.getElementById(fieldId + '-eye');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+
         // Add floating animation to shapes
         document.addEventListener('DOMContentLoaded', function() {
             const shapes = document.querySelectorAll('.shape');
             shapes.forEach((shape, index) => {
                 shape.style.animationDelay = (index * 2) + 's';
             });
+            
+            // Initialize Bootstrap components
+            // This ensures navbar toggler works properly
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            if (navbarToggler) {
+                // Force Bootstrap to recognize the toggler
+                const collapse = document.querySelector('#mmNavbar');
+                if (collapse) {
+                    new bootstrap.Collapse(collapse, {
+                        toggle: false
+                    });
+                }
+            }
         });
     </script>
 </body>

@@ -251,7 +251,7 @@
                 <div class="col-12 para">
                     <h3 class="title">Privacy</h3>
                     <p>
-                        At MM Verify, we are committed to protecting your privacy. This Privacy Policy outlines how we collect, use, and safeguard your information when you use our certificate verification services and platform. By using our services, you consent to the practices described in this policy.
+                        At MM Certify, we are committed to protecting your privacy. This Privacy Policy outlines how we collect, use, and safeguard your information when you use our certificate verification services and platform. By using our services, you consent to the practices described in this policy.
                     </p>
                     
                     <h3 class="title">1. Information We Collect</h3>
@@ -325,17 +325,13 @@
                         If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:
                     </p>
                     <p>
-                        [ ImpactSpire Co.,Ltd ]
+                    Grace Myanmar Global Enterprise Co.,Ltd
                     </p>
+                    
                     <p>
-                        [Address]
+                        info@mmcertify.com
                     </p>
-                    <p>
-                        [Contact Email Address]
-                    </p>
-                    <p>
-                        [Contact Phone Number]
-                    </p>
+                  
                     
                 </div>
             </div>
@@ -350,23 +346,23 @@
                     <h3 class="title">Disclaimer</h3>
                     
                     <p>
-                        MM Verify’s services are intended to provide general information regarding the verification of educational and professional credentials. Our platform verifies credentials based on data provided by third-party institutions and organizations. We do not create or alter the content of the credentials we verify.
+                        MM Certify’s services are intended to provide general information regarding the verification of educational and professional credentials. Our platform verifies credentials based on data provided by third-party institutions and organizations. We do not create or alter the content of the credentials we verify.
                     </p>
                     
                     <p>
-                        MM Verify provides verification services based on available information but does not endorse, represent, or validate the institutions, individuals, or credentials submitted for verification. The inclusion of any institution or credential in our database does not imply approval or endorsement by MM Verify.
+                        MM Certify provides verification services based on available information but does not endorse, represent, or validate the institutions, individuals, or credentials submitted for verification. The inclusion of any institution or credential in our database does not imply approval or endorsement by MM Verify.
                     </p>
                     
                     <p>
-                        MM Verify is not liable for any direct, indirect, incidental, or consequential damages arising from the use of our platform or reliance on the verification services provided. This includes but is not limited to loss of income, employment opportunities, or reputational harm. Users accept all risks associated with the use of our services.
+                        MM Certify is not liable for any direct, indirect, incidental, or consequential damages arising from the use of our platform or reliance on the verification services provided. This includes but is not limited to loss of income, employment opportunities, or reputational harm. Users accept all risks associated with the use of our services.
                     </p>
                     
                     <p>
-                        MM Verify strives to provide continuous and uninterrupted service; however, we do not guarantee that our platform will always be available or that access will be uninterrupted. MM Verify may temporarily suspend or discontinue services for maintenance, upgrades, or other reasons, without prior notice.
+                        MM Certify strives to provide continuous and uninterrupted service; however, we do not guarantee that our platform will always be available or that access will be uninterrupted. MM Verify may temporarily suspend or discontinue services for maintenance, upgrades, or other reasons, without prior notice.
                     </p>
                     
                     <p>
-                        MM Verify reserves the right to modify or update this disclaimer at any time. Any changes will be effective immediately upon posting on our platform. Your continued use of our services following any modifications constitutes your acceptance of the revised disclaimer.
+                        MM Certify reserves the right to modify or update this disclaimer at any time. Any changes will be effective immediately upon posting on our platform. Your continued use of our services following any modifications constitutes your acceptance of the revised disclaimer.
                     </p>
                     
                 </div>
@@ -439,7 +435,7 @@
         <div class="container-fluid text-center mt-5 py-4" style="background: #344767; color: #fff;" id="footer">
             <div class="row align-items-center">
                 <div class="col-12">
-                    <h4 class="mb-3">MM Certify is a company by ImpactSpire Co.,Ltd</h4>
+                    <h4 class="mb-3">MM Certify is a company by Grace Myanmar Global Enterprise Co.,Ltd</h4>
                 </div>
                 <div class="col-md-2">
                     <a href="{{ url('/terms-and-conditions#privacy') }}" class="mb-2" style="text-decoration: none; color: #fff;" >Privacy</a>
@@ -461,15 +457,8 @@
                         <p class="m-0" style="font-size: 0.8em;">Your data is save with us</p>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <span style="font-size: 0.8em" >Mobile Phone : 09799263405</span>
-                </div>
-                <div class="col-md-2">
-                    <span style="font-size: 0.8em">Viber        : 09799263405</span>
-                </div>
-                <div class="col-md-2">
-                    <span style="font-size: 0.8em">Telegram     : 09799263405</span>
-                </div>
+                
+              
                 <div class="col-md-2">
                     <span style="font-size: 0.8em">Email        : info@mmcertify.com</span>
                 </div>
