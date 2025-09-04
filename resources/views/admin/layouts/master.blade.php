@@ -52,9 +52,8 @@
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
                 aria-hidden="true" id="iconSidenav"></i>
-            <a class="navbar-brand m-0" href="{{ url('/') }}"
-                target="_blank">
-                <img src="{{ asset('/mmlogo.jpg') }}" class="navbar-brand-img" style="max-height: 70px;" alt="main_logo">
+            <a class="navbar-brand d-flex justify-content-center w-100 m-0" href="{{ url('/') }}">
+                <img src="https://mmcertify.com/mmlogo.png" class="navbar-brand-img" style="max-height: 70px;" alt="main_logo">
                 <!--<span class="ms-1 font-weight-bold text-white">Admin Panel</span>-->
             </a>
         </div>
