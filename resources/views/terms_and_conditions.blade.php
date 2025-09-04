@@ -78,88 +78,7 @@
     </head>
     <body>
         <!-- Navbar bg-primary -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white">
-            <div class="container">
-                <a class="navbar-brand text-white" href="{{ url('/') }}">
-                    <img src="{{ asset('mmlogo.jpg') }}" style="height: 100px;" />
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul style="font-size: 13px;" class="navbar-nav ms-auto">
-                        
-                        <!--<li class="nav-item">-->
-                        <!--    <a class="nav-link text-primary ms-4" href="#">About Us</a>-->
-                        <!--</li>-->
-                        
-                        <li class="nav-item dropdown ms-4">
-                            <a class="nav-link dropdown-toggle text-primary" href="#" id="dropdownMenuButton" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                About Us
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item" href="{{ url('/#about-us') }}">About Us</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/#vision-mission') }}">Vision & Mission</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/#core-values') }}">Core Values</a></li>
-                            </ul>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link text-primary ms-4" href="{{ url('/#product-service') }}">Product & Service</a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link text-primary ms-4" href="{{ url('/#users-benefits') }}">Users' Benefits</a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link text-primary ms-4" href="{{ url('/#faqs') }}">FAQs</a>
-                        </li>
-                            
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link text-primary ms-4" href="{{ route('register') }}">Sign Up</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-primary ms-4" href="{{ route('login') }}">Login</a>
-                            </li>
-                        @else
-                            
-                            @hasrole('admin')
-                                <li class="nav-item">
-                                    <a class="nav-link text-primary ms-4" href="{{ url('/admin') }}">
-                                        <i class="fas fa-cogs"></i> Admin
-                                    </a>
-                                </li>
-                            @elsehasrole('user')
-                                <li class="nav-item">
-                                    <a class="nav-link text-primary ms-4" href="{{ url('/user') }}">
-                                        <i class="fas fa-cogs"></i> Admin
-                                    </a>
-                                </li>
-                            @endhasrole
-                            <li class="nav-item">
-                                <a class="nav-link text-primary ms-4" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                   Logout
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </li>
-                        @endguest
-                        
-                        <li class="nav-item">
-                            <a class="nav-link text-primary ms-4" href="{{ url('/check') }}">
-                                <i class="fas fa-search"></i> Check
-                            </a>
-                        </li>
-                        
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        
+      @include('nav')
         <!--Terms of use-->
         <div class="container mt-5" id="term-of-use">
             <div class="row">
@@ -432,47 +351,7 @@
         </div>
 
         
-        <div class="container-fluid text-center mt-5 py-4" style="background: #344767; color: #fff;" id="footer">
-            <div class="row align-items-center">
-                <div class="col-12">
-                    <h4 class="mb-3">MM Certify is a company by Grace Myanmar Global Enterprise Co.,Ltd</h4>
-                </div>
-                <div class="col-md-2">
-                    <a href="{{ url('/terms-and-conditions#privacy') }}" class="mb-2" style="text-decoration: none; color: #fff;" >Privacy</a>
-                </div>
-                <div class="col-md-2">
-                    <a href="{{ url('/terms-and-conditions#term-of-use') }}" class="mb-2" style="text-decoration: none; color: #fff;" >Term Of Use</a>
-                </div>
-                <div class="col-md-2">
-                    <a href="{{ url('/terms-and-conditions#disclaimers') }}" class="mb-2" style="text-decoration: none; color: #fff;" >Disclaimer</a>
-                </div>
-                <div class="col-md-2 mb-2">
-                    <a href="{{ url('/#contact-us') }}" class="" style="text-decoration: none; color: #fff;" >Contact Us</a>
-                </div>
-                <div class="col-md-4">
-                    <div class="text-center mb-2">
-                        <a href="{{ url('/terms-and-conditions#gdpr') }}">
-                            <img src="{{ asset('/images/GDPR.png') }}" class="" style="height: 4rem; border-radius: 10px;" alt="" />    
-                        </a>
-                        <p class="m-0" style="font-size: 0.8em;">Your data is save with us</p>
-                    </div>
-                </div>
-                
-              
-                <div class="col-md-2">
-                    <span style="font-size: 0.8em">Email        : info@mmcertify.com</span>
-                </div>
-                <div class="col-12">
-                    <br>
-                    <a href="https://www.facebook.com/mmcertify" target="_blank" class="btn btn-primary me-2" style="border-radius: 50%;">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/company/mmcertify" target="_blank" class="btn btn-info" style="border-radius: 50%; color: white;">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
+       @include('footer')
         
     </body>
     
