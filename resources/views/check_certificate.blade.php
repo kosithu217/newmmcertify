@@ -350,9 +350,9 @@
 
                 <!-- Course Outline -->
                 @if($certificate->course_outline)
-                    <h3 class="section-title">
+                    <!-- <h3 class="section-title">
                         <i class="fas fa-book-open me-2"></i>Course Outline
-                    </h3>
+                    </h3> -->
                     <div >
                         {!! $certificate->course_outline !!}
                     </div>
