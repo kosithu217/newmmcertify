@@ -33,6 +33,7 @@ class ProfileController extends Controller
     $validated = $request->validate([
         'name' => 'required|string|max:255',
         'phone' => 'nullable|string|max:255',
+        'email' => 'nullable|email|max:255',
         'address' => 'nullable|string|max:255',
         'color' => 'nullable|string|max:20',
         'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -58,6 +59,7 @@ class ProfileController extends Controller
         'user_id' => auth()->id(),
         'name' => $validated['name'],
         'phone' => $validated['phone'] ?? null,
+        'email' => $validated['email'] ?? null,
         'address' => $validated['address'] ?? null,
         'color' => $validated['color'] ?? null,
         'logo' => $logoPath,
@@ -94,6 +96,7 @@ class ProfileController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'phone' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:255',
             'address' => 'nullable|string|max:255',
             'color' => 'nullable|string|max:20',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -117,6 +120,7 @@ class ProfileController extends Controller
     
         $profile->name = $validated['name'];
         $profile->phone = $validated['phone'] ?? null;
+        $profile->email = $validated['email'] ?? null;
         $profile->address = $validated['address'] ?? null;
         $profile->color = $validated['color'] ?? null;
         $profile->weblink = $validated['weblink'] ?? null;

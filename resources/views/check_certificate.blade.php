@@ -406,6 +406,7 @@
         $shouldShowFooter = $profile && (
             !empty($profile->logo) ||
             !empty($profile->phone) ||
+            !empty($profile->email) ||
             !empty($profile->address) ||
             !empty($profile->weblink)
         );
@@ -464,6 +465,11 @@
                         <h5 class="profile-name">{{ $profile->name }}</h5>
                         @if($profile->phone)
                         <p><i class="fa-solid fa-phone"></i> <span>{{ $profile->phone }}</span></p>
+                        @endif
+                        @if($profile->email)
+                        <p><i class="fa-solid fa-envelope"></i> 
+                            <a href="mailto:{{ $profile->email }}" rel="noopener noreferrer">{{ $profile->email }}</a>
+                        </p>
                         @endif
                         @if($profile->address)
                         <p style="text-align: justify;"><i class="fas fa-map-marker-alt"></i> <span>{{ $profile->address }}</span></p>

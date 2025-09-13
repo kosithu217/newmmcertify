@@ -9,8 +9,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card shadow border-0">
-                <div class="card-header bg-primary text-white">
-                    <h3 class="mb-0">Edit Profile</h3>
+                <div class="card-header bg-primary text-white" style="
+    background-color: #434390 !important;
+">
+                    <h3  style="
+    color: white;
+" class="mb-0">Edit Profile</h3>
                 </div>
                 <div class="card-body">
                     @if ($errors->any())
@@ -66,6 +70,16 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control bg-white border @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email', $profile->email) }}">
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+
                         <div class="mb-3">
                             <label for="weblink" class="form-label">Weblink</label>
                             <input type="text" class="form-control bg-white border @error('weblink') is-invalid @enderror" id="weblink" name="weblink" value="{{ old('weblink', $profile->weblink) }}">
@@ -74,7 +88,9 @@
                             @enderror
                         </div>
                         <div class="d-flex justify-content-between">
-                            <button type="submit" class="btn btn-primary px-4">Update</button>
+                            <button style="
+    background-color: #434390;
+" type="submit" class="btn btn-primary px-4">Update</button>
                             <a href="{{ route('user.profile') }}" class="btn btn-outline-secondary">Cancel</a>
                         </div>
                     </form>
