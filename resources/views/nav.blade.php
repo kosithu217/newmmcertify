@@ -4,7 +4,7 @@
         text-transform: uppercase;
         font-weight: 600;
         letter-spacing: 0.5px;
-        font-size: 13px;
+        font-size: 11px;
     }
 
     /* Pill buttons like demo image */
@@ -46,7 +46,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
             <div class="container">
                 <a class="navbar-brand text-white" href="{{ url('/') }}">
-                    <img src="{{ asset('mmlogo.png') }}" style="height: 100px;" />
+                    <img src="{{ asset('mmlogo.png') }}" style="height: 63px;" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mmNavbar" aria-controls="mmNavbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -90,8 +90,8 @@
                             
                         @guest
                             <li class="nav-item auth-actions ms-4">
-                                <a class="btn btn-pill-primary" href="{{ route('register') }}">Sign Up</a>
-                                <a class="btn btn-pill-warning" href="{{ route('login') }}">Sign In</a>
+                                <a class="btn btn-pill-primary" href="{{ route('register') }}" style="font-size: 11px;">Sign Up</a>
+                                <a class="btn btn-pill-warning" href="{{ route('login') }}" style="font-size: 11px;">Sign In</a>
                             </li>
                         @else
                             

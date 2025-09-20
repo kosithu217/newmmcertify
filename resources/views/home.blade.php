@@ -94,6 +94,67 @@
                 font-size:1.3rem;
                 vertical-align:middle;
             }
+            /* Product & Service section */
+            .ps-section{
+                background:transparent;
+                border-radius:0;
+                box-shadow:none;
+                border:none;
+                padding:0;
+            }
+            .ps-section p{
+                color: rgba(0, 0, 0, 0.75);
+                line-height: 1.8;
+                font-size: 0.95rem;
+            }
+            .ribbon-wrapper{ }
+            .ribbon-badge{
+                display:inline-block;
+                background:linear-gradient(90deg,#2979ff,#3f51b5);
+                color:#fff;
+                font-weight:700;
+                letter-spacing:.02em;
+                padding:.5rem 1rem;
+                border-radius:6px;
+                text-transform:uppercase;
+                font-size:20px;
+                position:relative;
+            }
+            .ribbon-badge::before,
+            .ribbon-badge::after{
+                content:"";
+                position:absolute;
+                top:50%;
+                transform:translateY(-50%);
+                width:0; height:0;
+                border-top:12px solid transparent;
+                border-bottom:12px solid transparent;
+            }
+            .ribbon-badge::before{ left:-12px; border-right:12px solid #2c5bda; }
+            .ribbon-badge::after{ right:-12px; border-left:12px solid #3750bf; }
+            /* subtle callout text under products image */
+            .ps-highlight-text{
+                color:#3f51b5; /* indigo */
+                font-weight:600;
+                letter-spacing:.2px;
+                display:inline-flex;
+                align-items:center;
+                gap:.4rem;
+                text-align:center;
+                white-space:normal;
+            }
+            .ps-highlight-text i{ color:#3f51b5; }
+            /* limit side-by-side service images */
+            .half-img{ max-width:100%; width:100%; height:auto; }
+            /* fixed width images for certificate/transcript preview */
+            .ps-fixed-img{ width:288px; max-width:100%; height:auto; }
+
+            @media (max-width: 576px){
+                .ps-section{ padding: 0 !important; }
+                .ribbon-badge{ font-size:.72rem; padding:.4rem .75rem; }
+                .ps-section p{ font-size:0.9rem; }
+                .half-img{ max-width:100%; }
+            }
             </style>
         <!-- Ionicons -->
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -253,53 +314,54 @@
         <div class="container mt-5" id="product-service">
             <div class="row">
                 <div class="col-12 para">
-                    <h3 class="title">Product & Service</h3>
-                    
-                    <h5 class="title text-center">Verifiable Digital Certificate Issuing and Verification Platform</h5>
+                    <div class="text-center mb-3 ribbon-wrapper">
+                        <span class="ribbon-badge">E- Certificate Issuing and Verification Platform</span>
+                    </div>
                     <p>
-                        We proudly collaborate with local academic institutions to revolutionize the way educational certificates are issued and verified. Through the MM Certify platform, education centers, vocational schools, colleges, private and public schools can securely issue verifiable certificates, ensuring authenticity and trust in every certification. This ensures that students, employers, and organizations can easily authenticate qualifications in a fast, reliable, and tamper-proof manner.
+                        MMCertify.com is a web-based platform that partners with local academic institutions to transform the way educational certificates are issued and verified. Through our platform, education centers, vocational schools, colleges, and both public and private schools can securely issue verifiable certificates, ensuring authenticity and trust in every credential. This empowers students, employers, and organizations to quickly and reliably authenticate qualifications in a secure, tamper-proof way.
                     </p>
-                    <!--<p>-->
-                    <!--    As a result, they are highly trusted sources of information, enabling businesses or individuals to easily verify people's identities and qualifications online.-->
-                    <!--</p>-->
-                    
-                    <h5 class="title text-center">Educational Certificate Attestation Services</h5>
-                    <p>
-                        Educational Certificate attestation services are available for individuals and businesses in both domestic and international locations, including those who offer study abroad education services and university admissions offices. Our process involves collaborating with local private and public academic institutions to verify certificates, diplomas, degrees, and transcripts.
-Whether you're a job seeker looking to verify your certificates or a company ensuring the authenticity of an applicant's qualifications, we are here to help.
-                    </p>
-                    <p>
-                        We can verify a wide range of certificates including: 
-                    </p>
-                    <!--<p>-->
-                    <!--    We can verify a wide range of certificates including:-->
-                    <!--</p>-->
-                    <p class="sub-para">
-                        Educational diplomas and degrees
-                    </p>
-                    <p class="sub-para">
-                        Academic Transcripts
-                    </p>
-                    <p class="sub-para">
-                        Professional certifications
-                    </p>
-                    <p class="sub-para">
-                        Awards and achievements
-                    </p>
-                    <p class="sub-para">
-                        Employment verification documents
-                    </p>
-                    <p class="sub-para">
-                        Medical documents
-                    </p>
-                    
-                    <div class="text-center">
-                        <img src="{{ asset('/images/ProductAndService.gif') }}" class="img p-lg-5 p-md-5" alt="" />    
+                    <div class="text-center my-3">
+                        <img src="{{ asset('/images/viber_image_2025-09-13_18-19-49-816.jpg') }}" class="img-fluid" alt="Products & Services Illustration" style="max-width: 900px; width: 100%; height: auto;">
                     </div>
                     
+
+                    <div class="text-center mb-3 ribbon-wrapper">
+                        <span class="ribbon-badge">Online Pre-Verification for Degree Certificates and Documents </span>
+                    </div>
+                    <p>
+                    Our Online Pre-Verification service ensures that your academic and professional 
+documents are authenticated before submission. This process helps reduce delays, 
+build trust, and improve acceptance rates by confirming the credibility of your 
+certificates in advance.
+Job seekers often require pre-verified certificates to demonstrate their qualifications 
+and character to potential employers. Students may need verified documents for 
+admission to universities, colleges, or training institutions—both locally and 
+internationally. 
+By using our Pre-Verification services, you gain confidence that your documents will be 
+readily accepted, while employers and institutions receive assurance of authenticity.
+                    </p>
+
+                    <div class="text-center">
+                        <img src="{{ asset('/images/1Product.png') }}" class="img-fluid" alt="Products & Services Illustration" style="max-width: 900px; width: 100%; height: auto;">
+                    </div>
+                     <br>
+                    <div class="text-center mb-3 ribbon-wrapper">
+                        <span class="ribbon-badge">Degree Certificate and Transcript obtaining Service</span>
+                    </div>
+                    <p>
+                    We provide services in obtaining degree certificates and transcripts from government 
+universities in Yangon and Mandalay on behalf of students who are currently residing 
+overseas. Our service helps students living abroad conveniently obtain their degree 
+certificates and transcripts from government universities in Myanmar, without the need 
+to travel back in person.  
+                    </p>
+
+                    <div class="d-flex flex-column flex-md-row align-items-center justify-content-center gap-3 gap-md-4">
+                        <img src="{{ asset('/images/image-1.jpg') }}" class="ps-fixed-img" alt="Service Image 1">
+                        <img src="{{ asset('/images/image-2.jpg') }}" class="ps-fixed-img" alt="Service Image 2">
+                    </div>
                 </div>
             </div>
-            
             <hr>
         </div>
         
