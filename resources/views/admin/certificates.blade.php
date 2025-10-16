@@ -33,9 +33,9 @@
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Course Outline</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Student Name</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Course Name</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Qr Generate</th>
                                         <th class="text-secondary opacity-7"></th>
                                         @if(Auth::user()->hasRole('user'))
@@ -45,30 +45,12 @@
                                 </thead>
                                 <tbody>
                                     @php
-                                        // Separate the specific certificate (Grace IT with the specific description)
-                                        $specialCertificate = Auth::user()->certificates->filter(function ($certificate) {
-                                            return $certificate->name === 'Grace IT' && 
-                                                   str_contains($certificate->description, 'Hello Ko Kaung Testing Number 5 , 4, 3 ,2');
-                                        })->first();
-
-                                        // Get all certificates except the special one
-                                        $otherCertificates = Auth::user()->certificates->filter(function ($certificate) {
-                                            return !($certificate->name === 'Grace IT' && 
-                                                     str_contains($certificate->description, 'Hello Ko Kaung Testing Number 5 , 4, 3 ,2'));
-                                        })->sortByDesc('created_at');
-
-                                        // Combine: special certificate first, then the rest
-                                        $certificates = collect([]);
-                                        if ($specialCertificate) {
-                                            $certificates->push($specialCertificate);
-                                        }
-                                        $certificates = $certificates->merge($otherCertificates)->values();
-
-                                        // Total number of certificates for reverse numbering
+                                        // Get all certificates for the authenticated user
+                                        $certificates = auth()->user()->certificates()->latest()->get();
                                         $totalCertificates = $certificates->count();
                                     @endphp
 
-                                    @foreach ($certificates as $key => $certificate)
+                                    @foreach($certificates as $key => $certificate)
                                     <tr>
                                         <td>
                                             <p class="text-xs font-weight-bold mb-0">{{ $totalCertificates - $key }}</p>
@@ -79,8 +61,8 @@
                                         <td class="align-middle text-left text-sm" style="word-wrap: break-word; white-space: normal;">
                                             <span class="text-secondary text-xs font-weight-bold">{{ Str::limit(strip_tags($certificate->description), 100, '...') }}</span>
                                         </td>
-                                        <td class="align-middle text-left text-sm" style="word-wrap: break-word; white-space: normal;">
-                                            <span class="text-secondary text-xs font-weight-bold">{{ Str::limit(strip_tags($certificate->course_outline), 100, '...') }}</span>
+                                        <td class="text-center">
+                                            <p class="text-xs font-weight-bold mb-0">{{ $certificate->created_at->format('M d, Y') }}</p>
                                         </td>
                                         <td class="align-middle text-center">
                                             @if($certificate->generated)

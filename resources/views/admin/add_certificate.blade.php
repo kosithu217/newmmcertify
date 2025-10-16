@@ -165,6 +165,30 @@
                                                     value="{{ Auth::user()->name }}" required readonly>
                                                 <div class="form-text">This field is auto-filled and cannot be changed.</div>
                                             </div>
+
+                                            <!-- <div class="row">
+                                                <div class="col-md-6 mb-4">
+                                                    <label for="student_name" class="form-label fw-bold">Student Name <span class="text-danger">*</span></label>
+                                                    <div class="input-group input-group-outline">
+                                                        <input type="text" name="student_name" class="form-control" id="student_name"
+                                                            placeholder="Enter student name" required>
+                                                    </div>
+                                                    @error('student_name')
+                                                        <div class="text-danger small">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="col-md-6 mb-4">
+                                                    <label for="course_name" class="form-label fw-bold">Course Name <span class="text-danger">*</span></label>
+                                                    <div class="input-group input-group-outline">
+                                                        <input type="text" name="course_name" class="form-control" id="course_name"
+                                                            placeholder="Enter course name" required>
+                                                    </div>
+                                                    @error('course_name')
+                                                        <div class="text-danger small">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div> -->
                                         </div>
 
 
@@ -204,7 +228,29 @@
     </div>
 </div>
 
+<div class="row">
+                                                <div class="col-md-6 mb-4">
+                                                    <label for="student_name" class="form-label fw-bold">Student Name <span class="text-danger">*</span></label>
+                                                    <div class="input-group input-group-outline">
+                                                        <input type="text" name="student_name" class="form-control" id="student_name"
+                                                            placeholder="Enter student name" required>
+                                                    </div>
+                                                    @error('student_name')
+                                                        <div class="text-danger small">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
 
+                                                <div class="col-md-6 mb-4">
+                                                    <label for="course_name" class="form-label fw-bold">Course Name <span class="text-danger">*</span></label>
+                                                    <div class="input-group input-group-outline">
+                                                        <input type="text" name="course_name" class="form-control" id="course_name"
+                                                            placeholder="Enter course name" required>
+                                                    </div>
+                                                    @error('course_name')
+                                                        <div class="text-danger small">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
 
                                         <div class="col-12">
                                             <h5 class="section-title">Certificate Images</h5>

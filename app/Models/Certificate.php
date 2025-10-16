@@ -11,7 +11,8 @@ class Certificate extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'uniqueId', 'image','image_two','user_id', 'name', 'logo', 'certificate', 'description', 'course_outline' ,'generated', 'qrcode', 'attachments','certificate_logo'
+        'uniqueId', 'image', 'image_two', 'user_id', 'name', 'student_name', 'course_name', 'logo', 
+        'certificate', 'description', 'course_outline', 'generated', 'qrcode', 'attachments', 'certificate_logo'
     ];
 
     public static function boot()

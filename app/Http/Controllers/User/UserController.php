@@ -27,8 +27,8 @@ class UserController extends Controller
 
     public function certificates()
     {
-      
-        return view('admin.certificates');
+        $certificates = auth()->user()->certificates()->latest()->get();
+        return view('admin.certificates', compact('certificates'));
     }
 
     public function addCertificate()
@@ -45,6 +45,8 @@ class UserController extends Controller
     // Validate form input
     $validated = $request->validate([
         'name' => 'required|string',
+        'student_name' => 'required|string|max:255',
+        'course_name' => 'required|string|max:255',
         'image' => 'required|image|mimes:png|max:2048', // Front side of certificate (required)
         'image_two' => 'nullable|image|mimes:png|max:2048', // Back side of certificate (optional)
         'description' => 'required|string',
@@ -103,20 +105,23 @@ class UserController extends Controller
     }
 
     // Create a new certificate record
-    $certificate = Certificate::create([
-        'user_id' => Auth::id(), 
+    $certificate = new Certificate([
+        'user_id' => Auth::id(),
         'name' => $validated['name'],
-        'logo' => $logoPath, // Use the logoPath (either existing, new, or null)
-        'certificate' => $certificatePath,
-        'image_two' => $certificateTwoPath,
+        'student_name' => $validated['student_name'],
+        'course_name' => $validated['course_name'],
         'description' => $validated['description'],
         'course_outline' => $validated['course_outline'],
+        'certificate' => $certificatePath,
+        'image_two' => $certificateTwoPath,
+        'logo' => $logoPath,
     ]);
 
     if($request->file('attachments')){
         $certificate->attachments = serialize($uploadedFiles);
-        $certificate->update();
     }
+
+    $certificate->save();
 
     // Redirect to a page with success message
     return redirect('/user/certificates')->with('success', 'Certificate uploaded successfully!');
