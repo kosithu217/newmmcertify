@@ -45,8 +45,14 @@
                                 </thead>
                                 <tbody>
                                     @php
-                                        // Get all certificates for the authenticated user
-                                        $certificates = auth()->user()->certificates()->latest()->get();
+                                        // Get certificates based on user role
+                                        if(Auth::user()->hasRole('user')) {
+                                            // Regular users see only their certificates
+                                            $certificates = auth()->user()->certificates()->latest()->get();
+                                        } else {
+                                            // Admin users see all certificates from all users
+                                            $certificates = App\Models\Certificate::latest()->get();
+                                        }
                                         $totalCertificates = $certificates->count();
                                     @endphp
 
@@ -56,10 +62,10 @@
                                             <p class="text-xs font-weight-bold mb-0">{{ $totalCertificates - $key }}</p>
                                         </td>
                                         <td>
-                                            <p class="text-xs font-weight-bold mb-0">{{ $certificate->name }}</p>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $certificate->student_name ?: '-' }}</p>
                                         </td>
                                         <td class="align-middle text-left text-sm" style="word-wrap: break-word; white-space: normal;">
-                                            <span class="text-secondary text-xs font-weight-bold">{{ Str::limit(strip_tags($certificate->description), 100, '...') }}</span>
+                                            <span class="text-secondary text-xs font-weight-bold">{{ $certificate->course_name ?: '-' }}</span>
                                         </td>
                                         <td class="text-center">
                                             <p class="text-xs font-weight-bold mb-0">{{ $certificate->created_at->format('M d, Y') }}</p>
