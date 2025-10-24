@@ -25,6 +25,9 @@ use Illuminate\Http\Request;
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/blog', [HomeController::class, 'blogIndex'])->name('blog.index');
 Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog.show');
+Route::get('/api-docs', function () {
+    return view('api_docs');
+})->name('api-docs');
 // Route::get('/home', function () {
 //     return view('home');
 // })->name('home');
