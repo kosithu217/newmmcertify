@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ConnectHubController;
 use Spatie\Permission\Models\Role;
 use App\Models\Blog;
 use App\Models\Certificate;
@@ -28,6 +29,12 @@ Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog.show');
 Route::get('/api-docs', function () {
     return view('api_docs');
 })->name('api-docs');
+
+Route::get('/connect-hub', [ConnectHubController::class, 'index'])->name('connect-hub');
+Route::get('/connect-hub/create', [ConnectHubController::class, 'create'])->name('connect-hub.create');
+Route::get('/connect-hub/{id}', [ConnectHubController::class, 'show'])->name('connect-hub.show');
+Route::post('/connect-hub', [ConnectHubController::class, 'store'])->name('connect-hub.store');
+
 // Route::get('/home', function () {
 //     return view('home');
 // })->name('home');
