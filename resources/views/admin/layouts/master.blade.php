@@ -100,6 +100,51 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link text-white " href="{{ url('user/profile') }}">
+
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">table_view</i>
+                        </div>
+
+                        <span class="nav-link-text ms-1">Public Profile Listing</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white " href="{{ url('/connect-hub') }}">
+
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">hub</i>
+                        </div>
+
+                        <span class="nav-link-text ms-1">Connect Hub</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white " href="{{ url('/connect-hub/create') }}">
+
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">add_circle</i>
+                        </div>
+
+                        <span class="nav-link-text ms-1">Add Institute</span>
+                    </a>
+                </li>
+
+
+                 <li class="nav-item">
+                    <a class="nav-link text-white " href="{{ url('/institutes-admin') }}">
+
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">list</i>
+                        </div>
+
+                        <span class="nav-link-text ms-1">Institute List</span>
+                    </a>
+                </li>
+
 
 
 

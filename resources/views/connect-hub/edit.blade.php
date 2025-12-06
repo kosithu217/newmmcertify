@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    Add New Institute - Connect Hub
+    Edit Institute - Connect Hub
 @endsection
 
 @section('css')
@@ -14,8 +14,8 @@
         <div class="container-fluid">
             <div class="row align-items-center">
                 <div class="col-md-8">
-                    <h2 class="text-white mb-2"><i class="fas fa-plus-circle me-2"></i>Add New Institute</h2>
-                    <p class="text-white-50 mb-0">Share your institute information with the community</p>
+                    <h2 class="text-white mb-2"><i class="fas fa-edit me-2"></i>Edit Institute</h2>
+                    <p class="text-white-50 mb-0">Update your institute information</p>
                 </div>
                 <div class="col-md-4 text-md-end">
                     <a href="{{ route('connect-hub') }}" class="btn btn-light">
@@ -55,8 +55,9 @@
                     </div>
                 @endif
                     
-                <form action="{{ route('connect-hub.store') }}" method="POST" enctype="multipart/form-data" id="instituteForm">
+                <form action="{{ route('connect-hub.update', $institute->id) }}" method="POST" enctype="multipart/form-data" id="instituteForm">
                     @csrf
+                    @method('PUT')
                     
                     <!-- Institute Information -->
                     <div class="form-card mb-4">
@@ -67,7 +68,7 @@
                             <div class="row g-3">
                                 <div class="col-md-12">
                                     <label for="institute_name" class="form-label">Institute Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control form-control-modern" id="institute_name" name="institute_name" placeholder="Enter institute name" value="{{ old('institute_name') }}" required>
+                                    <input type="text" class="form-control form-control-modern" id="institute_name" name="institute_name" placeholder="Enter institute name" value="{{ old('institute_name', $institute->institute_name) }}" required>
                                 </div>
                                 
                                 <!-- Company Logo Upload -->
@@ -80,16 +81,20 @@
                                             <p class="mb-0 small">Click to upload logo</p>
                                             <p class="text-muted small mb-0">JPG, PNG (Max 2MB)</p>
                                         </label>
-                                        <div id="logoPreview" class="mt-2" style="display: none;">
-                                            <img id="logoImg" src="" alt="Logo Preview" class="preview-img-small">
-                                            <p class="text-success small mt-1"><i class="fas fa-check-circle"></i> <span id="logoName"></span></p>
+                                        <div id="logoPreview" class="mt-2">
+                                            @if($institute->company_logo)
+                                                <img src="{{ asset('storage/' . $institute->company_logo) }}" alt="Current Logo" class="preview-img-small">
+                                                <p class="text-success small mt-1"><i class="fas fa-check-circle"></i> Current logo</p>
+                                            @else
+                                                <p class="text-muted small">No logo uploaded</p>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <div class="col-md-4 d-flex align-items-end">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="is_verified" name="is_verified" {{ old('is_verified') ? 'checked' : '' }}>
+                                        <input class="form-check-input" type="checkbox" id="is_verified" name="is_verified" {{ old('is_verified', $institute->mmcertify_verified) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="is_verified">
                                             <i class="fas fa-check-circle text-success me-1"></i>MMCertify Verified
                                         </label>
@@ -99,21 +104,21 @@
                                     <label for="country" class="form-label">Location (State/Region) <span class="text-danger">*</span></label>
                                     <select class="form-select form-control-modern" id="country" name="country" required>
                                         <option value="">Select State/Region</option>
-                                        <option value="Yangon">Yangon</option>
-                                        <option value="Mandalay">Mandalay</option>
-                                        <option value="Naypyidaw">Naypyidaw</option>
-                                        <option value="Bago">Bago</option>
-                                        <option value="Ayeyarwady">Ayeyarwady</option>
-                                        <option value="Magway">Magway</option>
-                                        <option value="Sagaing">Sagaing</option>
-                                        <option value="Tanintharyi">Tanintharyi</option>
-                                        <option value="Mon">Mon</option>
-                                        <option value="Kayin">Kayin</option>
-                                        <option value="Kayah">Kayah</option>
-                                        <option value="Shan">Shan</option>
-                                        <option value="Kachin">Kachin</option>
-                                        <option value="Chin">Chin</option>
-                                        <option value="Rakhine">Rakhine</option>
+                                        <option value="Yangon" {{ old('country', $institute->location) == 'Yangon' ? 'selected' : '' }}>Yangon</option>
+                                        <option value="Mandalay" {{ old('country', $institute->location) == 'Mandalay' ? 'selected' : '' }}>Mandalay</option>
+                                        <option value="Naypyidaw" {{ old('country', $institute->location) == 'Naypyidaw' ? 'selected' : '' }}>Naypyidaw</option>
+                                        <option value="Bago" {{ old('country', $institute->location) == 'Bago' ? 'selected' : '' }}>Bago</option>
+                                        <option value="Ayeyarwady" {{ old('country', $institute->location) == 'Ayeyarwady' ? 'selected' : '' }}>Ayeyarwady</option>
+                                        <option value="Magway" {{ old('country', $institute->location) == 'Magway' ? 'selected' : '' }}>Magway</option>
+                                        <option value="Sagaing" {{ old('country', $institute->location) == 'Sagaing' ? 'selected' : '' }}>Sagaing</option>
+                                        <option value="Tanintharyi" {{ old('country', $institute->location) == 'Tanintharyi' ? 'selected' : '' }}>Tanintharyi</option>
+                                        <option value="Mon" {{ old('country', $institute->location) == 'Mon' ? 'selected' : '' }}>Mon</option>
+                                        <option value="Kayin" {{ old('country', $institute->location) == 'Kayin' ? 'selected' : '' }}>Kayin</option>
+                                        <option value="Kayah" {{ old('country', $institute->location) == 'Kayah' ? 'selected' : '' }}>Kayah</option>
+                                        <option value="Shan" {{ old('country', $institute->location) == 'Shan' ? 'selected' : '' }}>Shan</option>
+                                        <option value="Kachin" {{ old('country', $institute->location) == 'Kachin' ? 'selected' : '' }}>Kachin</option>
+                                        <option value="Chin" {{ old('country', $institute->location) == 'Chin' ? 'selected' : '' }}>Chin</option>
+                                        <option value="Rakhine" {{ old('country', $institute->location) == 'Rakhine' ? 'selected' : '' }}>Rakhine</option>
                                     </select>
                                 </div>
                             </div>
@@ -127,7 +132,7 @@
                         </div>
                         <div class="form-card-body">
                             <label for="overview" class="form-label">Describe your institute <span class="text-danger">*</span></label>
-                            <textarea class="form-control form-control-modern" id="overview" name="overview" rows="4" placeholder="Describe your overview, mission, and education focus" required>{{ old('overview') }}</textarea>
+                            <textarea class="form-control form-control-modern" id="overview" name="overview" rows="4" placeholder="Describe your overview, mission, and education focus" required>{{ old('overview', $institute->short_overview) }}</textarea>
                             <small class="text-muted">Tell us about your institute's mission and what makes it unique</small>
                         </div>
                     </div>
@@ -142,19 +147,44 @@
                         </div>
                         <div class="form-card-body">
                             <div id="coursesContainer">
-                                <div class="row g-3 mb-3 course-row">
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control form-control-modern" name="courses[0][name]" placeholder="Course Name" required>
+                                @php
+                                    $courses = old('courses', $institute->offered_courses ?? []);
+                                    if (!is_array($courses)) {
+                                        $courses = json_decode($courses, true) ?? [];
+                                    }
+                                @endphp
+                                
+                                @if(count($courses) > 0)
+                                    @foreach($courses as $index => $course)
+                                        <div class="row g-3 mb-3 course-row">
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control form-control-modern" name="courses[{{ $index }}][name]" placeholder="Course Name" value="{{ $course['name'] ?? '' }}" required>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input type="text" class="form-control form-control-modern" name="courses[{{ $index }}][duration]" placeholder="Duration (e.g., 3 months)" value="{{ $course['duration'] ?? '' }}" required>
+                                            </div>
+                                            <div class="col-md-1 d-flex align-items-center">
+                                                <button type="button" class="btn btn-sm btn-outline-danger remove-course w-100" @if($index == 0) disabled style="display: none;" @endif>
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="row g-3 mb-3 course-row">
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control form-control-modern" name="courses[0][name]" placeholder="Course Name" required>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control form-control-modern" name="courses[0][duration]" placeholder="Duration (e.g., 3 months)" required>
+                                        </div>
+                                        <div class="col-md-1 d-flex align-items-center">
+                                            <button type="button" class="btn btn-sm btn-outline-danger remove-course w-100" disabled style="display: none;">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="col-md-5">
-                                        <input type="text" class="form-control form-control-modern" name="courses[0][duration]" placeholder="Duration (e.g., 3 months)" required>
-                                    </div>
-                                    <div class="col-md-1 d-flex align-items-center">
-                                        <button type="button" class="btn btn-sm btn-outline-danger remove-course w-100" disabled style="display: none;">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                                    </div>
-                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -173,9 +203,18 @@
                                     <p class="text-muted small mb-0">Drag & drop or click to browse</p>
                                     <p class="text-muted small">Supported: JPG, PNG, PDF (Max 2MB)</p>
                                 </label>
-                                <div id="certificatePreview" class="mt-3" style="display: none;">
-                                    <img id="certificateImg" src="" alt="Certificate Preview" class="preview-img">
-                                    <p class="text-success mt-2"><i class="fas fa-check-circle"></i> <span id="certificateName"></span></p>
+                                <div id="certificatePreview" class="mt-3">
+                                    @if($institute->certificate_showcase)
+                                        @if(str_ends_with($institute->certificate_showcase, '.pdf'))
+                                            <div class="text-center">
+                                                <i class="fas fa-file-pdf fa-3x text-danger mb-2"></i>
+                                                <p class="text-success mt-2"><i class="fas fa-check-circle"></i> Current certificate: {{ basename($institute->certificate_showcase) }}</p>
+                                            </div>
+                                        @else
+                                            <img src="{{ asset('storage/' . $institute->certificate_showcase) }}" alt="Current Certificate" class="preview-img">
+                                            <p class="text-success mt-2"><i class="fas fa-check-circle"></i> Current certificate</p>
+                                        @endif
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -191,13 +230,32 @@
                         </div>
                         <div class="form-card-body">
                             <div id="jobsContainer">
-                                <div class="input-group mb-2 job-row">
-                                    <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
-                                    <input type="text" class="form-control form-control-modern" name="jobs[]" placeholder="e.g., Junior Data Analyst">
-                                    <button class="btn btn-outline-danger remove-job" type="button" disabled style="display: none;">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
+                                @php
+                                    $jobs = old('jobs', $institute->job_opportunities ?? []);
+                                    if (!is_array($jobs)) {
+                                        $jobs = json_decode($jobs, true) ?? [];
+                                    }
+                                @endphp
+                                
+                                @if(count($jobs) > 0)
+                                    @foreach($jobs as $index => $job)
+                                        <div class="input-group mb-2 job-row">
+                                            <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
+                                            <input type="text" class="form-control form-control-modern" name="jobs[]" placeholder="e.g., Junior Data Analyst" value="{{ $job }}" required>
+                                            <button class="btn btn-outline-danger remove-job" type="button" @if($index == 0) disabled style="display: none;" @endif>
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="input-group mb-2 job-row">
+                                        <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
+                                        <input type="text" class="form-control form-control-modern" name="jobs[]" placeholder="e.g., Junior Data Analyst">
+                                        <button class="btn btn-outline-danger remove-job" type="button" disabled style="display: none;">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -213,21 +271,21 @@
                                     <label for="website" class="form-label">Website</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fas fa-globe"></i></span>
-                                        <input type="url" class="form-control form-control-modern" id="website" name="website" placeholder="https://example.com" value="{{ old('website') }}">
+                                        <input type="url" class="form-control form-control-modern" id="website" name="website" placeholder="https://example.com" value="{{ old('website', $institute->website) }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="phone" class="form-label">Phone</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                        <input type="tel" class="form-control form-control-modern" id="phone" name="phone" placeholder="+95 9 123 456 789" value="{{ old('phone') }}">
+                                        <input type="tel" class="form-control form-control-modern" id="phone" name="phone" placeholder="+95 9 123 456 789" value="{{ old('phone', $institute->phone) }}">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <label for="email" class="form-label">Email</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                        <input type="email" class="form-control form-control-modern" id="email" name="email" placeholder="info@example.com" value="{{ old('email') }}">
+                                        <input type="email" class="form-control form-control-modern" id="email" name="email" placeholder="info@example.com" value="{{ old('email', $institute->email) }}">
                                     </div>
                                 </div>
                             </div>
@@ -248,7 +306,18 @@
                                     <p class="text-muted small mb-0">Drag & drop or click to browse</p>
                                     <p class="text-muted small">Upload up to 6 images (JPG, PNG - Max 2MB each)</p>
                                 </label>
-                                <div id="galleryPreview" class="mt-3 row g-2" style="display: none;"></div>
+                                <div id="galleryPreview" class="mt-3 row g-2">
+                                    @if($institute->image_gallery && is_array($institute->image_gallery))
+                                        @foreach($institute->image_gallery as $index => $image)
+                                            <div class="col-4 col-md-2">
+                                                <div class="position-relative">
+                                                    <img src="{{ asset('storage/' . $image) }}" class="img-fluid rounded shadow-sm" style="height: 100px; object-fit: cover; width: 100%;">
+                                                    <span class="badge bg-success position-absolute top-0 end-0 m-1">{{ $index + 1 }}</span>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -259,7 +328,7 @@
                             <i class="fas fa-times me-2"></i>Cancel
                         </a>
                         <button type="submit" class="btn btn-primary-gradient btn-lg px-5">
-                            <i class="fas fa-save me-2"></i>Save Institute
+                            <i class="fas fa-save me-2"></i>Update Institute
                         </button>
                     </div>
                 </form>
@@ -274,21 +343,21 @@
             <div class="modal-content border-0 shadow-lg">
                 <div class="modal-header bg-gradient border-0">
                     <h5 class="modal-title text-white">
-                        <i class="fas fa-check-circle me-2"></i>Confirm Submission
+                        <i class="fas fa-check-circle me-2"></i>Confirm Update
                     </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body p-4 text-center">
                     <i class="fas fa-question-circle text-primary mb-3" style="font-size: 4rem;"></i>
-                    <h5 class="mb-3">Ready to submit?</h5>
-                    <p class="text-muted">Please review all information before submitting. This will create a new institute profile.</p>
+                    <h5 class="mb-3">Ready to update?</h5>
+                    <p class="text-muted">Please review all information before updating. This will modify the institute profile.</p>
                 </div>
                 <div class="modal-footer border-0 justify-content-center">
                     <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">
                         <i class="fas fa-times me-2"></i>Review Again
                     </button>
                     <button type="button" class="btn btn-primary-gradient px-4" id="confirmSubmit">
-                        <i class="fas fa-check me-2"></i>Yes, Submit
+                        <i class="fas fa-check me-2"></i>Yes, Update
                     </button>
                 </div>
             </div>
@@ -461,8 +530,9 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        let courseCount = {{ count($courses) > 0 ? max(array_keys($courses)) + 1 : 1 }};
+        
         // Add Course
-        let courseCount = 1;
         document.getElementById('addCourse').addEventListener('click', function() {
             const container = document.getElementById('coursesContainer');
             const newRow = document.createElement('div');

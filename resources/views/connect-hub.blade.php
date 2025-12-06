@@ -14,14 +14,42 @@
 <div class="hero-section">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-8">
-                <h1 class="hero-title mb-2">Connect Hub</h1>
-                <p class="hero-subtitle mb-0">Discover and connect with educational institutes</p>
-            </div>
-            <div class="col-lg-4 text-lg-end text-center mt-3 mt-lg-0">
-                <a href="{{ route('connect-hub.create') }}" class="btn btn-modern">
-                    <i class="fas fa-plus me-2"></i>Add Connection
-                </a>
+            <div class="col-12 text-center">
+                <div class="hero-content">
+                    <div class="hero-icon mb-4">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h1 class="hero-title mb-3">Public Profile Listing</h1>
+                    <p class="hero-subtitle mb-4">Discover and connect with educational institutes</p>
+                    <div class="hero-stats">
+                        <div class="row justify-content-center">
+                            <div class="col-md-3 col-6 mb-3">
+                                <div class="stat-item">
+                                    <h3 class="stat-number">{{ $institutes->where('status', 1)->count() }}</h3>
+                                    <p class="stat-label">Active Institutes</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6 mb-3">
+                                <div class="stat-item">
+                                    <h3 class="stat-number">{{ $institutes->where('mmcertify_verified', true)->where('status', 1)->count() }}</h3>
+                                    <p class="stat-label">Verified</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6 mb-3">
+                                <div class="stat-item">
+                                    <h3 class="stat-number">{{ $institutes->pluck('location')->unique()->count() }}</h3>
+                                    <p class="stat-label">Locations</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6 mb-3">
+                                <div class="stat-item">
+                                    <h3 class="stat-number">{{ $institutes->where('offered_courses', '!=', null)->where('status', 1)->count() }}</h3>
+                                    <p class="stat-label">Course Providers</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -31,7 +59,7 @@
 
     <!-- Connection Cards -->
     <div class="row justify-content-center g-4">
-        @forelse($institutes as $institute)
+        @forelse($institutes->where('status', 1) as $institute)
         <div class="col-md-10">
             <a href="{{ route('connect-hub.show', $institute->id) }}" class="text-decoration-none">
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
@@ -44,9 +72,9 @@
                             }
                         @endphp
                         
-                        @if($firstImage)
+                        @if($institute->company_logo)
                             <div class="institute-image-circle" style="width: 100px; height: 100px; border-radius: 50%; overflow: hidden; border: 3px solid #667eea;">
-                                <img src="{{ asset('storage/' . $firstImage) }}" alt="{{ $institute->institute_name }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                <img src="{{ asset('storage/' . $institute->company_logo) }}" alt="{{ $institute->institute_name }}" style="width: 100%; height: 100%; object-fit: cover;">
                             </div>
                         @else
                             <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
@@ -102,23 +130,84 @@
 
     /* Hero Section */
     .hero-section {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 1.5rem 0;
+        background: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), 
+                    url('https://images.unsplash.com/photo-1581078426770-6d336e5de7bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1934&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        padding: 2.5rem 0;
         margin-bottom: 2rem;
         box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-icon {
+        font-size: 2.5rem;
+        color: rgba(255,255,255,0.9);
+        animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-5px); }
     }
 
     .hero-title {
         color: #ffffff;
-        font-size: 1.75rem;
+        font-size: 2rem;
         font-weight: 700;
         margin: 0;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
 
     .hero-subtitle {
         color: rgba(255,255,255,0.9);
-        font-size: 0.95rem;
+        font-size: 1rem;
         font-weight: 400;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .hero-stats {
+        margin-top: 2rem;
+    }
+
+    .stat-item {
+        background: rgba(255,255,255,0.15);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.3);
+        border-radius: 10px;
+        padding: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .stat-item:hover {
+        transform: translateY(-3px);
+        background: rgba(255,255,255,0.2);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+
+    .stat-number {
+        color: #ffffff;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin: 0;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .stat-label {
+        color: rgba(255,255,255,0.8);
+        font-size: 0.8rem;
+        font-weight: 500;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
 
     /* Button Styles */

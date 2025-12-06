@@ -9,6 +9,7 @@ class Institute extends Model
     protected $fillable = [
         'user_id',
         'institute_name',
+        'company_logo',
         'mmcertify_verified',
         'location',
         'short_overview',
@@ -19,6 +20,7 @@ class Institute extends Model
         'phone',
         'email',
         'image_gallery',
+        'status',
     ];
 
     protected $casts = [
@@ -26,6 +28,7 @@ class Institute extends Model
         'offered_courses' => 'array',
         'job_opportunities' => 'array',
         'image_gallery' => 'array',
+        'status' => 'boolean',
     ];
 
     public function user()

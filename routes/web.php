@@ -33,7 +33,14 @@ Route::get('/api-docs', function () {
 Route::get('/connect-hub', [ConnectHubController::class, 'index'])->name('connect-hub');
 Route::get('/connect-hub/create', [ConnectHubController::class, 'create'])->name('connect-hub.create');
 Route::get('/connect-hub/{id}', [ConnectHubController::class, 'show'])->name('connect-hub.show');
+Route::get('/connect-hub/{id}/edit', [ConnectHubController::class, 'edit'])->name('connect-hub.edit');
 Route::post('/connect-hub', [ConnectHubController::class, 'store'])->name('connect-hub.store');
+Route::put('/connect-hub/{id}', [ConnectHubController::class, 'update'])->name('connect-hub.update');
+Route::delete('/connect-hub/{id}', [ConnectHubController::class, 'destroy'])->name('connect-hub.destroy');
+Route::put('/connect-hub/{id}/restore', [ConnectHubController::class, 'restore'])->name('connect-hub.restore');
+
+// Test route for institutes admin (outside admin group)
+Route::get('/institutes-admin', [ConnectHubController::class, 'adminIndex'])->name('institutes.admin');
 
 // Route::get('/home', function () {
 //     return view('home');
@@ -157,6 +164,9 @@ Route::middleware(['admin-group'])->prefix('admin')->group(function () {
         Route::put('/blog/{blog}', [BlogController::class, 'update'])->name('admin.blog.update');
         Route::delete('/blog/{blog}', [BlogController::class, 'destroy'])->name('admin.blog.delete');
     });
+    
+    // Institutes Routes
+    Route::get('/institutes', [ConnectHubController::class, 'adminIndex'])->name('admin.institutes');
     
     // User Management Routes
     Route::middleware(['menu.permission:users'])->group(function () {

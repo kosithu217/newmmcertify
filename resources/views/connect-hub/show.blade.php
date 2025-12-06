@@ -25,16 +25,9 @@
             <div class="card-body p-4">
                 <div class="row align-items-center">
                     <div class="col-auto">
-                        @php
-                            $firstImage = null;
-                            if($institute->image_gallery && is_array($institute->image_gallery) && count($institute->image_gallery) > 0) {
-                                $firstImage = $institute->image_gallery[0];
-                            }
-                        @endphp
-                        
-                        @if($firstImage)
+                        @if($institute->company_logo)
                             <div class="institute-logo">
-                                <img src="{{ asset('storage/' . $firstImage) }}" alt="{{ $institute->institute_name }}">
+                                <img src="{{ asset('storage/' . $institute->company_logo) }}" alt="{{ $institute->institute_name }}">
                             </div>
                         @else
                             <div class="institute-logo-placeholder">

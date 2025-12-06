@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('institute_name');
+            $table->string('company_logo')->nullable();
             $table->boolean('mmcertify_verified')->default(false);
             $table->string('location')->nullable();
             $table->text('short_overview')->nullable();

@@ -78,8 +78,8 @@
                             <a class="nav-link text-primary ms-4" href="{{ url('/#users-benefits') }}">Users' Benefits</a>
                         </li>
 
-                          <li class="nav-item">
-                            <a class="nav-link text-primary ms-4" href="{{ url('/connect-hub') }}">Connect Hub</a>
+                        <li class="nav-item">
+                            <a class="nav-link text-primary ms-4" href="{{ url('/connect-hub') }}">Public Profile Listing</a>
                         </li>
 
 
