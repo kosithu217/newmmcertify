@@ -111,7 +111,7 @@
                     </a>
                 </li> -->
 
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link text-white " href="{{ url('/connect-hub') }}">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -120,7 +120,7 @@
 
                         <span class="nav-link-text ms-1">Connect Hub</span>
                     </a>
-                </li>
+                </li> -->
 
                 <li class="nav-item">
                     <a class="nav-link text-white " href="{{ url('/connect-hub/create') }}">
@@ -129,7 +129,7 @@
                             <i class="material-icons opacity-10">add_circle</i>
                         </div>
 
-                        <span class="nav-link-text ms-1">Add Institute</span>
+                        <span class="nav-link-text ms-1">Create Public Profile</span>
                     </a>
                 </li>
 
@@ -141,7 +141,7 @@
                             <i class="material-icons opacity-10">list</i>
                         </div>
 
-                        <span class="nav-link-text ms-1">Institute List</span>
+                        <span class="nav-link-text ms-1">Edit Profile</span>
                     </a>
                 </li>
 
