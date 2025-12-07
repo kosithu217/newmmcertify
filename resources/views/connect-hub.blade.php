@@ -113,9 +113,9 @@
                 <i class="fas fa-inbox fa-4x text-muted mb-3"></i>
                 <h5 class="text-muted">No institutes found</h5>
                 <p class="text-muted">Be the first to add a connection!</p>
-                <a href="{{ route('connect-hub.create') }}" class="btn btn-modern mt-3">
+                <!-- <a href="{{ route('connect-hub.create') }}" class="btn btn-modern mt-3">
                     <i class="fas fa-plus me-2"></i>Add First Connection
-                </a>
+                </a> -->
             </div>
         </div>
         @endforelse
