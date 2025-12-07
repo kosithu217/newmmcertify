@@ -11,7 +11,7 @@
     <!-- Navbar -->
     @include('nav')
 
-<div class="hero-section">
+<!-- <div class="hero-section">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-12 text-center">
@@ -53,7 +53,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <div class="container py-5">
 

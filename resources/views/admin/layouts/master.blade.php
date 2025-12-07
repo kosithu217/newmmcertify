@@ -99,7 +99,7 @@
                         <span class="nav-link-text ms-1">Contact Info (Footer)</span>
                     </a>
                 </li>
-
+<!-- 
                 <li class="nav-item">
                     <a class="nav-link text-white " href="{{ url('user/profile') }}">
 
@@ -109,7 +109,7 @@
 
                         <span class="nav-link-text ms-1">Public Profile Listing</span>
                     </a>
-                </li>
+                </li> -->
 
                 <li class="nav-item">
                     <a class="nav-link text-white " href="{{ url('/connect-hub') }}">
