@@ -141,6 +141,14 @@
             line-height: 1.6;
         }
 
+        /* Soft pink background applied only when `colorback` class is present */
+        .colorback {
+            background-color: #ffe6f0;
+            padding: 12px 16px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
         .form-title {
             color: #2d3748;
             font-size: 32px;
@@ -475,6 +483,9 @@
                 <div class="welcome-text">
                     Please provide the required information below to create an academic or business institution account for issuing verifiable digital certificates on the MM Certify platform.
                 </div>
+                <div class="welcome-text colorback">
+                    For your institution account to be successfully approved, please ensure that you carefully provide all the required information, ensuring its accuracy and completeness.
+                    </div>
                 <h1 class="form-title">Account Registration</h1>
             </div>
 
@@ -530,7 +541,7 @@
                                 </div>
                             </div>
                         </div>
-
+                                 
                         <div class="terms-section">
                             <div class="terms-title">Terms of Use and Privacy Policy</div>
                             <div class="terms-content">
@@ -634,8 +645,11 @@
                                 </div>
                             </div>
                         </div>
-
+                         
                         <div class="terms-section">
+                                <div class="welcome-text colorback">
+                    Please note that incomplete or incorrect submissions may unfortunately result in a delay or denial of approval.
+                    </div>   
                             <div class="terms-title">Terms of Use and Privacy Policy</div>
                             <div class="terms-content">
                                 <strong>TERMS OF USE</strong><br>

@@ -47,9 +47,9 @@
                                 <i class="fas fa-map-marker-alt me-2"></i>{{ $institute->location }}
                             </p>
                         @endif
-                        <a href="#" class="text-primary text-decoration-none">
+                        <!-- <a href="#" class="text-primary text-decoration-none">
                             <i class="fas fa-map me-1"></i>View on Google Maps
-                        </a>
+                        </a> -->
                     </div>
                 </div>
             </div>
@@ -140,10 +140,10 @@
                                 <a href="mailto:{{ $institute->email }}" class="text-decoration-none">{{ $institute->email }}</a>
                             </p>
                         @endif
-                        <p class="mb-0">
+                        <!-- <p class="mb-0">
                             <i class="fab fa-facebook text-primary me-2"></i>
                             <a href="#" class="text-decoration-none">Facebook</a>
-                        </p>
+                        </p> -->
                     </div>
                 </div>
             </div>

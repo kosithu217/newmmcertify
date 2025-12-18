@@ -7,7 +7,7 @@
             <div class="col-md-8">
                 <div class="footer-links-container">
                     <div class="footer-links-row">
-                        <a href="{{ url('/api-docs') }}" class="footer-link">API</a>
+                        <a href="{{ url('/api-docs') }}" class="footer-link">Become a partner</a>
                         <a href="{{ url('/terms-and-conditions#term-of-use') }}" class="footer-link">Term of use</a>
                         <a href="{{ url('/terms-and-conditions#privacy') }}" class="footer-link">Privacy policy</a>
                     </div>
